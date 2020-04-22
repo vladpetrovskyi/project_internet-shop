@@ -3,7 +3,7 @@ package vlad.petrovskyi.internetshop;
 import java.math.BigDecimal;
 import java.util.List;
 import vlad.petrovskyi.internetshop.lib.Injector;
-import vlad.petrovskyi.internetshop.model.Item;
+import vlad.petrovskyi.internetshop.model.Product;
 import vlad.petrovskyi.internetshop.service.ItemService;
 
 public class Application {
@@ -14,28 +14,28 @@ public class Application {
 
         dbInitializer(itemService);
 
-        List<Item> itemList = itemService.getAll();
-        for (Item item: itemList) {
-            System.out.println(item.toString());
+        List<Product> productList = itemService.getAll();
+        for (Product product : productList) {
+            System.out.println(product.toString());
         }
 
-        Item itemTest = itemService.get(2L);
-        System.out.println(itemTest);
+        Product productTest = itemService.get(2L);
+        System.out.println(productTest);
 
-        itemTest.setPrice(new BigDecimal("2000.00"));
-        itemTest.setName("iPhone 5S");
-        itemService.update(itemTest);
-        System.out.println(itemTest);
+        productTest.setPrice(new BigDecimal("2000.00"));
+        productTest.setName("iPhone 5S");
+        itemService.update(productTest);
+        System.out.println(productTest);
 
         itemService.delete(2L);
-        for (Item item: itemList) {
-            System.out.println(item.toString());
+        for (Product product : productList) {
+            System.out.println(product.toString());
         }
     }
 
     private static void dbInitializer(ItemService itemService) {
-        itemService.create(new Item("iPhone 11", new BigDecimal("999.00")));
-        itemService.create(new Item("iPhone 11 Pro", new BigDecimal("1099.00")));
-        itemService.create(new Item("iPhone 11 Pro Max", new BigDecimal("1299.00")));
+        itemService.create(new Product("iPhone 11", new BigDecimal("999.00")));
+        itemService.create(new Product("iPhone 11 Pro", new BigDecimal("1099.00")));
+        itemService.create(new Product("iPhone 11 Pro Max", new BigDecimal("1299.00")));
     }
 }

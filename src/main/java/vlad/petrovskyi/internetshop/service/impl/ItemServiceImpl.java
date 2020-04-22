@@ -4,7 +4,7 @@ import java.util.List;
 import vlad.petrovskyi.internetshop.dao.ItemDao;
 import vlad.petrovskyi.internetshop.lib.Inject;
 import vlad.petrovskyi.internetshop.lib.Service;
-import vlad.petrovskyi.internetshop.model.Item;
+import vlad.petrovskyi.internetshop.model.Product;
 import vlad.petrovskyi.internetshop.service.ItemService;
 
 @Service
@@ -14,23 +14,23 @@ public class ItemServiceImpl implements ItemService {
     private ItemDao itemDao;
 
     @Override
-    public Item create(Item item) {
-        return itemDao.create(item);
+    public Product create(Product product) {
+        return itemDao.create(product);
     }
 
     @Override
-    public Item get(Long id) {
+    public Product get(Long id) {
         return itemDao.get(id).get();
     }
 
     @Override
-    public List<Item> getAll() {
+    public List<Product> getAll() {
         return itemDao.getAll();
     }
 
     @Override
-    public Item update(Item item) {
-        return itemDao.update(item);
+    public Product update(Product product) {
+        return itemDao.update(product);
     }
 
     @Override

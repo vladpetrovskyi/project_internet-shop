@@ -2,12 +2,12 @@ package vlad.petrovskyi.internetshop.model;
 
 import java.math.BigDecimal;
 
-public class Item {
+public class Product {
     private Long id;
     private String name;
     private BigDecimal price;
 
-    public Item(String name, BigDecimal price) {
+    public Product(String name, BigDecimal price) {
         this.name = name;
         this.price = price;
     }

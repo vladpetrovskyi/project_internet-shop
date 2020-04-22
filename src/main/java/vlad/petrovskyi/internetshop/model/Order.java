@@ -4,6 +4,6 @@ import java.util.List;
 
 public class Order {
     private Long id;
-    private List<Item> items;
+    private List<Product> products;
     private User user;
 }

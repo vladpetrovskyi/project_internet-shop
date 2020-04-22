@@ -1,16 +1,16 @@
 package vlad.petrovskyi.internetshop.service;
 
 import java.util.List;
-import vlad.petrovskyi.internetshop.model.Item;
+import vlad.petrovskyi.internetshop.model.Product;
 
 public interface ItemService {
-    Item create(Item item);
+    Product create(Product product);
 
-    Item get(Long id);
+    Product get(Long id);
 
-    List<Item> getAll();
+    List<Product> getAll();
 
-    Item update(Item item);
+    Product update(Product product);
 
     boolean delete(Long id);
 }
