@@ -9,7 +9,7 @@ public class Storage {
     public static final List<Product> products = new ArrayList<>();
     private static Long productId = 0L;
 
-    public static void addItem(Product product) {
+    public static void addProduct(Product product) {
         productId++;
         product.setId(productId);
         Storage.products.add(product);
