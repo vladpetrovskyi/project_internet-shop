@@ -1,10 +1,9 @@
 package vlad.petrovskyi.internetshop.service;
 
+import java.util.List;
 import vlad.petrovskyi.internetshop.model.Order;
 import vlad.petrovskyi.internetshop.model.Product;
 import vlad.petrovskyi.internetshop.model.User;
-
-import java.util.List;
 
 public interface OrderService {
     Order completeOrder(List<Product> products, User user);

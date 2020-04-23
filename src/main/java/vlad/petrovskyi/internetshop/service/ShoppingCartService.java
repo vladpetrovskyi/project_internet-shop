@@ -1,9 +1,8 @@
 package vlad.petrovskyi.internetshop.service;
 
+import java.util.List;
 import vlad.petrovskyi.internetshop.model.Product;
 import vlad.petrovskyi.internetshop.model.ShoppingCart;
-
-import java.util.List;
 
 public interface ShoppingCartService {
     ShoppingCart addProduct(ShoppingCart shoppingCart, Product product);

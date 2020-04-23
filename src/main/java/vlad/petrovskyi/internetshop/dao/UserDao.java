@@ -1,13 +1,13 @@
 package vlad.petrovskyi.internetshop.dao;
 
-import vlad.petrovskyi.internetshop.model.User;
-
 import java.util.List;
+import java.util.Optional;
+import vlad.petrovskyi.internetshop.model.User;
 
 public interface UserDao {
     User create(User user);
 
-    User get(Long id);
+    Optional<User> get(Long id);
 
     List<User> getAll();
 

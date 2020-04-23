@@ -1,35 +1,43 @@
 package vlad.petrovskyi.internetshop.dao.impl;
 
-import vlad.petrovskyi.internetshop.dao.OrderDao;
-import vlad.petrovskyi.internetshop.model.Order;
-import vlad.petrovskyi.internetshop.model.Product;
-import vlad.petrovskyi.internetshop.model.User;
-
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.IntStream;
+import vlad.petrovskyi.internetshop.dao.OrderDao;
+import vlad.petrovskyi.internetshop.db.Storage;
+import vlad.petrovskyi.internetshop.lib.Dao;
+import vlad.petrovskyi.internetshop.model.Order;
 
+@Dao
 public class OrderDaoImpl implements OrderDao {
     @Override
-    public Order completeOrder(List<Product> products, User user) {
-        return null;
+    public Order create(Order order) {
+        Storage.addOrder(order);
+        return order;
     }
 
     @Override
-    public List<Order> getUserOrders(User user) {
-        return null;
-    }
-
-    @Override
-    public Order get(Long id) {
-        return null;
+    public Optional<Order> get(Long id) {
+        return Storage.orders.stream()
+                .filter(o -> o.getId().equals(id))
+                .findFirst();
     }
 
     @Override
     public List<Order> getAll() {
-        return null;
+        return Storage.orders;
+    }
+
+    @Override
+    public Order update(Order order) {
+        IntStream.range(0, Storage.orders.size())
+                .filter(x -> order.getId().equals(Storage.orders.get(x).getId()))
+                .forEach(o -> Storage.orders.set(o, order));
+        return order;
     }
 
     @Override
     public boolean delete(Long id) {
-        return false;
+        return Storage.orders.removeIf(order -> order.getId().equals(id));
     }
 }

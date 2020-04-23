@@ -1,8 +1,7 @@
 package vlad.petrovskyi.internetshop.service;
 
-import vlad.petrovskyi.internetshop.model.User;
-
 import java.util.List;
+import vlad.petrovskyi.internetshop.model.User;
 
 public interface UserService {
     User create(User user);

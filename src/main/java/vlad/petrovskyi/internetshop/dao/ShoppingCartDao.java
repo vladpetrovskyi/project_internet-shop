@@ -1,18 +1,17 @@
 package vlad.petrovskyi.internetshop.dao;
 
-import vlad.petrovskyi.internetshop.model.Product;
+import java.util.List;
+import java.util.Optional;
 import vlad.petrovskyi.internetshop.model.ShoppingCart;
 
-import java.util.List;
-
 public interface ShoppingCartDao {
-    ShoppingCart addProduct(ShoppingCart shoppingCart, Product product);
+    ShoppingCart create(ShoppingCart shoppingCart);
 
-    boolean deleteProduct(ShoppingCart shoppingCart, Product product);
+    Optional<ShoppingCart> get(Long id);
 
-    void clear(ShoppingCart shoppingCart); //remove all products from the shoppingCart
+    List<ShoppingCart> getAll();
 
-    ShoppingCart getByUserId(Long userId);
+    ShoppingCart update(ShoppingCart shoppingCart);
 
-    List<Product> getAllProducts(ShoppingCart shoppingCart);
+    boolean delete(Long id);
 }
