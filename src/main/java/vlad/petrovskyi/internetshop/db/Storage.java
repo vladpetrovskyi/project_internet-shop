@@ -6,12 +6,12 @@ import vlad.petrovskyi.internetshop.model.Product;
 
 public class Storage {
 
-    public static final List<Product> PRODUCTS = new ArrayList<>();
-    private static Long itemId = 0L;
+    public static final List<Product> products = new ArrayList<>();
+    private static Long productId = 0L;
 
     public static void addItem(Product product) {
-        itemId++;
-        product.setId(itemId);
-        Storage.PRODUCTS.add(product);
+        productId++;
+        product.setId(productId);
+        Storage.products.add(product);
     }
 }

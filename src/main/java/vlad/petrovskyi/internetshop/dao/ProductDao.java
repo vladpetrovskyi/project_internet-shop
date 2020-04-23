@@ -1,12 +1,13 @@
-package vlad.petrovskyi.internetshop.service;
+package vlad.petrovskyi.internetshop.dao;
 
 import java.util.List;
+import java.util.Optional;
 import vlad.petrovskyi.internetshop.model.Product;
 
-public interface ItemService {
+public interface ProductDao {
     Product create(Product product);
 
-    Product get(Long id);
+    Optional<Product> get(Long id);
 
     List<Product> getAll();
 
