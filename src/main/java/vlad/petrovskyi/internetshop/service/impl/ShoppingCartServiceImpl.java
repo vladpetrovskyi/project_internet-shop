@@ -1,9 +1,8 @@
 package vlad.petrovskyi.internetshop.service.impl;
 
 import java.util.List;
-import java.util.stream.IntStream;
-
 import vlad.petrovskyi.internetshop.dao.ShoppingCartDao;
+import vlad.petrovskyi.internetshop.dao.UserDao;
 import vlad.petrovskyi.internetshop.lib.Inject;
 import vlad.petrovskyi.internetshop.model.Product;
 import vlad.petrovskyi.internetshop.model.ShoppingCart;
@@ -14,32 +13,25 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Inject
     private ShoppingCartDao shoppingCartDao;
 
+    @Inject
+    private UserDao userDao;
+
     @Override
     public ShoppingCart addProduct(ShoppingCart shoppingCart, Product product) {
-        if (shoppingCartDao.getAll().stream()
-                .anyMatch(c -> c.getId().equals(shoppingCart.getId())
-                        || c.getUser().equals(shoppingCart.getUser()))) {
-            return shoppingCartDao.update(shoppingCart);
-        }
         shoppingCart.getProducts().add(product);
-        return shoppingCartDao.create(shoppingCart);
+        return shoppingCartDao.update(shoppingCart);
     }
 
     @Override
     public boolean deleteProduct(ShoppingCart shoppingCart, Product product) {
-        shoppingCartDao.get(shoppingCart.getId()).get().getProducts()
-                .remove(IntStream.range(0, shoppingCartDao.get(shoppingCart.getId()).get()
-                        .getProducts().size())
-                        .filter(x -> shoppingCartDao.get(shoppingCart.getId()).get()
-                                .getProducts().get(x).getId().equals(product.getId()))
-                        .findFirst()
-                        .getAsInt());
+        shoppingCart.getProducts().remove(product);
+        shoppingCartDao.update(shoppingCart);
         return true;
     }
 
     @Override
     public void clear(ShoppingCart shoppingCart) {
-        shoppingCartDao.get(shoppingCart.getId()).get().getProducts().clear();
+        shoppingCart.getProducts().clear();
         shoppingCartDao.update(shoppingCart);
     }
 
@@ -48,7 +40,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         return shoppingCartDao.getAll().stream()
                 .filter(x -> x.getUser().getId().equals(userId))
                 .findFirst()
-                .get();
+                .orElse(shoppingCartDao.create(new ShoppingCart(userDao.get(userId).get())));
     }
 
     @Override

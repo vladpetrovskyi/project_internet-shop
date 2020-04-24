@@ -44,10 +44,10 @@ public class Application {
         User eugene = userService.create(new User("Eugene", "yogibear", "123454321"));
         User john = userService.create(new User("John", "j_mm3", "44113468"));
 
-        ShoppingCart shoppingCartMichael = new ShoppingCart(michael);
-        ShoppingCart shoppingCartAnton = new ShoppingCart(anton);
-        ShoppingCart shoppingCartEugene = new ShoppingCart(eugene);
-        ShoppingCart shoppingCartJohn = new ShoppingCart(john);
+        ShoppingCart shoppingCartMichael = shoppingCartService.getByUserId(michael.getId());
+        ShoppingCart shoppingCartAnton = shoppingCartService.getByUserId(anton.getId());
+        ShoppingCart shoppingCartEugene = shoppingCartService.getByUserId(eugene.getId());
+        ShoppingCart shoppingCartJohn = shoppingCartService.getByUserId(john.getId());
 
         shoppingCartService.addProduct(shoppingCartMichael, iPhoneXI);
         shoppingCartService.addProduct(shoppingCartService
