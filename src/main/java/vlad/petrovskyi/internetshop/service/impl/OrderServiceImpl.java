@@ -3,6 +3,7 @@ package vlad.petrovskyi.internetshop.service.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 import vlad.petrovskyi.internetshop.dao.OrderDao;
+import vlad.petrovskyi.internetshop.dao.ShoppingCartDao;
 import vlad.petrovskyi.internetshop.lib.Inject;
 import vlad.petrovskyi.internetshop.model.Order;
 import vlad.petrovskyi.internetshop.model.Product;
@@ -14,9 +15,16 @@ public class OrderServiceImpl implements OrderService {
     @Inject
     private OrderDao orderDao;
 
+    @Inject
+    private ShoppingCartDao shoppingCartDao;
+
     @Override
     public Order completeOrder(List<Product> products, User user) {
-        return orderDao.create(new Order(products, user));
+        Order order = new Order(products, user);
+        shoppingCartDao.getAll().stream()
+                .filter(c -> c.getUser().equals(user))
+                .forEach(c -> c.getProducts().clear());
+        return orderDao.create(order);
     }
 
     @Override
