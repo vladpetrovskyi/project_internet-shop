@@ -1,16 +1,9 @@
 package vlad.petrovskyi.internetshop.service;
 
-import java.util.List;
 import vlad.petrovskyi.internetshop.model.User;
 
-public interface UserService {
+public interface UserService extends GenericService<User, Long> {
     User create(User user);
 
-    User get(Long id);
-
-    List<User> getAll();
-
     User update(User user);
-
-    boolean delete(Long id);
 }
