@@ -1,6 +1,7 @@
 package vlad.petrovskyi.internetshop;
 
 import java.math.BigDecimal;
+import java.util.List;
 import vlad.petrovskyi.internetshop.lib.Injector;
 import vlad.petrovskyi.internetshop.model.Order;
 import vlad.petrovskyi.internetshop.model.Product;
@@ -67,7 +68,7 @@ public class Application {
 
         orderService.get(order.getId());
 
-        orderService.getUserOrders(michael);
+        List<Order> orderList = orderService.getUserOrders(michael);
 
         orderService.getAll();
 
