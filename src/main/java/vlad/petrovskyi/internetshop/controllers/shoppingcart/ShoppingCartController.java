@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import vlad.petrovskyi.internetshop.lib.Injector;
+import vlad.petrovskyi.internetshop.model.ShoppingCart;
 import vlad.petrovskyi.internetshop.service.ShoppingCartService;
 
 public class ShoppingCartController extends HttpServlet {
@@ -18,10 +19,9 @@ public class ShoppingCartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("products",
-                shoppingCartService.getAllProducts(shoppingCartService.getByUserId(USER_ID)));
-        request.setAttribute("sum", shoppingCartService.getAllProducts(
-                shoppingCartService.getByUserId(USER_ID))
+        ShoppingCart cart = shoppingCartService.getByUserId(USER_ID);
+        request.setAttribute("products", shoppingCartService.getAllProducts(cart));
+        request.setAttribute("sum", shoppingCartService.getAllProducts(cart)
                 .stream()
                 .map(p -> p.getPrice().longValue())
                 .reduce(Long::sum).orElse(0L));
