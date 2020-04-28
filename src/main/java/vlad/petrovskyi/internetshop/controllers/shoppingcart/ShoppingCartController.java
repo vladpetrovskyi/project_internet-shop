@@ -1,6 +1,7 @@
-package vlad.petrovskyi.internetshop.controllers;
+package vlad.petrovskyi.internetshop.controllers.shoppingcart;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,11 @@ public class ShoppingCartController extends HttpServlet {
             throws ServletException, IOException {
         request.setAttribute("products",
                 shoppingCartService.getAllProducts(shoppingCartService.getByUserId(USER_ID)));
+        request.setAttribute("sum", shoppingCartService.getAllProducts(
+                shoppingCartService.getByUserId(USER_ID))
+                .stream()
+                .map(p -> p.getPrice().longValue())
+                .reduce(Long::sum).orElse(0L));
         request.getRequestDispatcher("/WEB-INF/views/shoppingcart/viewShoppingCart.jsp")
                 .forward(request, response);
     }

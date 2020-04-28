@@ -1,4 +1,4 @@
-package vlad.petrovskyi.internetshop.controllers;
+package vlad.petrovskyi.internetshop.controllers.db.users;
 
 import java.io.IOException;
 import java.util.List;

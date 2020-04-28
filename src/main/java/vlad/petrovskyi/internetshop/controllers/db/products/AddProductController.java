@@ -1,4 +1,4 @@
-package vlad.petrovskyi.internetshop.controllers;
+package vlad.petrovskyi.internetshop.controllers.db.products;
 
 import java.io.IOException;
 import java.math.BigDecimal;

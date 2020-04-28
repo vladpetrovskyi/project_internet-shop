@@ -22,6 +22,7 @@
         </tr>
     </c:forEach>
 </table>
+<p>Sum: ${sum}</p>
 <a href="${pageContext.request.contextPath}/allProductsToBuy">Add</a> product<br>
 <a href="${pageContext.request.contextPath}/userPage">Return to your profile</a><br>
 </body>

@@ -14,7 +14,7 @@
 
     <servlet>
         <servlet-name>registration</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.RegistrationController</servlet-class>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.user.RegistrationController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>registration</servlet-name>
@@ -23,7 +23,7 @@
 
     <servlet>
         <servlet-name>getAllUsers</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.AllUsersController</servlet-class>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.db.users.AllUsersController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>getAllUsers</servlet-name>
@@ -32,7 +32,7 @@
 
     <servlet>
         <servlet-name>deleteUser</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.DeleteUserController</servlet-class>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.db.users.DeleteUserController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteUser</servlet-name>
@@ -41,7 +41,7 @@
 
     <servlet>
         <servlet-name>getAllProductsFromDb</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.AllProductsFromDbController</servlet-class>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.db.products.AllProductsFromDbController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>getAllProductsFromDb</servlet-name>
@@ -50,7 +50,7 @@
 
     <servlet>
         <servlet-name>addNewProduct</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.AddProductController</servlet-class>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.db.products.AddProductController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>addNewProduct</servlet-name>
@@ -59,7 +59,7 @@
 
     <servlet>
         <servlet-name>deleteProductFromDb</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.DeleteProductFromDbController</servlet-class>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.db.products.DeleteProductFromDbController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteProductFromDb</servlet-name>
@@ -68,7 +68,7 @@
 
     <servlet>
         <servlet-name>viewCart</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.ShoppingCartController</servlet-class>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.shoppingcart.ShoppingCartController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>viewCart</servlet-name>
@@ -77,7 +77,7 @@
 
     <servlet>
         <servlet-name>allProductsToBuy</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.AllProductsToBuyController</servlet-class>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.user.AllProductsToBuyController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>allProductsToBuy</servlet-name>
@@ -86,7 +86,7 @@
 
     <servlet>
         <servlet-name>addToCart</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.AddToCartController</servlet-class>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.shoppingcart.AddToCartController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>addToCart</servlet-name>
@@ -95,7 +95,7 @@
 
     <servlet>
         <servlet-name>deleteFromCart</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.DeleteFromCartController</servlet-class>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.shoppingcart.DeleteFromCartController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteFromCart</servlet-name>
@@ -104,7 +104,7 @@
 
     <servlet>
         <servlet-name>userPage</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.UserPageController</servlet-class>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.user.UserPageController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>userPage</servlet-name>
