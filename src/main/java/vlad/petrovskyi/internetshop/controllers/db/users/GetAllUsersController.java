@@ -10,10 +10,10 @@ import vlad.petrovskyi.internetshop.lib.Injector;
 import vlad.petrovskyi.internetshop.model.User;
 import vlad.petrovskyi.internetshop.service.UserService;
 
-public class AllUsersController extends HttpServlet {
+public class GetAllUsersController extends HttpServlet {
 
-    private static final Injector injector = Injector.getInstance("vlad.petrovskyi.internetshop");
-    private final UserService userService = (UserService) injector.getInstance(UserService.class);
+    private static final Injector INJECTOR = Injector.getInstance("vlad.petrovskyi.internetshop");
+    private final UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
