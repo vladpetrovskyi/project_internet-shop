@@ -5,7 +5,6 @@
 </head>
 <body>
 <h2>Your profile</h2>
-<h3 style="color: brown">${message}</h3>
 <a href="${pageContext.request.contextPath}/allProductsToBuy">Get</a> list of all products<br>
 <a href="${pageContext.request.contextPath}/viewCart">View</a> your shopping cart<br>
 <a href="${pageContext.request.contextPath}/viewUserOrders">View</a> your orders<br>

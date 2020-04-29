@@ -5,23 +5,24 @@
     <title>Your order</title>
 </head>
 <body>
-<h2>Your order #${order_id}</h2>
+<h3 style="color: brown">${message}</h3>
+<h2>Your order #${order.id}</h2>
 <table border="1">
     <tr>
         <th>ID</th>
         <th>Name</th>
         <th>Price</th>
     </tr>
-    <c:forEach var="product" items="${products}">
+    <c:forEach var="product" items="${order.getProducts()}">
         <tr>
             <td>
-                <c:out value="${product.id}" />
+                <c:out value="${product.getId()}" />
             </td>
             <td>
-                <c:out value="${product.name}" />
+                <c:out value="${product.getName()}" />
             </td>
             <td>
-                <c:out value="${product.price}" />
+                <c:out value="${product.getPrice()}" />
             </td>
         </tr>
     </c:forEach>

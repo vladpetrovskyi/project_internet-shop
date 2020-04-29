@@ -1,5 +1,6 @@
 package vlad.petrovskyi.internetshop.service.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 import vlad.petrovskyi.internetshop.dao.OrderDao;
@@ -32,6 +33,14 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.getAll().stream()
                 .filter(o -> o.getUser().getId().equals(user.getId()))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public BigDecimal sum(List<Product> products) {
+        return BigDecimal.valueOf(products.stream()
+                .map(p -> p.getPrice().longValue())
+                .reduce(Long::sum)
+                .orElse(0L));
     }
 
     @Override
