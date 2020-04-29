@@ -7,9 +7,107 @@
         <servlet-name>index</servlet-name>
         <servlet-class>vlad.petrovskyi.internetshop.controllers.IndexController</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>index</servlet-name>
-        <url-pattern>/index</url-pattern>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>registration</servlet-name>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.user.RegistrationController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>registration</servlet-name>
+        <url-pattern>/registration</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getAllUsers</servlet-name>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.db.users.GetAllUsersController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getAllUsers</servlet-name>
+        <url-pattern>/getAllUsers</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteUser</servlet-name>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.db.users.DeleteUserController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteUser</servlet-name>
+        <url-pattern>/deleteUser</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getAllProductsFromDb</servlet-name>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.db.products.GetAllProductsController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getAllProductsFromDb</servlet-name>
+        <url-pattern>/allProductsFromDb</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addNewProduct</servlet-name>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.db.products.AddProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addNewProduct</servlet-name>
+        <url-pattern>/addNewProduct</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteProductFromDb</servlet-name>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.db.products.DeleteProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteProductFromDb</servlet-name>
+        <url-pattern>/deleteProductFromDb</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>viewCart</servlet-name>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.shoppingcart.ShoppingCartController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>viewCart</servlet-name>
+        <url-pattern>/viewCart</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>allProductsToBuy</servlet-name>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.user.GetAllProductsController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>allProductsToBuy</servlet-name>
+        <url-pattern>/allProductsToBuy</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addToCart</servlet-name>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.shoppingcart.AddProductToCartController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addToCart</servlet-name>
+        <url-pattern>/addToCart</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteFromCart</servlet-name>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.shoppingcart.DeleteFromCartController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteFromCart</servlet-name>
+        <url-pattern>/deleteFromCart</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>userPage</servlet-name>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.user.UserPageController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>userPage</servlet-name>
+        <url-pattern>/userPage</url-pattern>
     </servlet-mapping>
 </web-app>

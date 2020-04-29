@@ -1,9 +1,12 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Hello world page</title>
+    <title>Main page</title>
 </head>
 <body>
-<h1>Hello world!</h1>
+<h2>Welcome!</h2>
+Are you a new user? <a href="${pageContext.request.contextPath}/registration">Sign up!</a><br>
+<a href="${pageContext.request.contextPath}/allProductsFromDb">Get</a> list of all products<br>
+<a href="${pageContext.request.contextPath}/getAllUsers">Get</a> list of all users<br>
 </body>
 </html>
