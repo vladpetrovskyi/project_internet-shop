@@ -10,7 +10,7 @@ import vlad.petrovskyi.internetshop.service.ProductService;
 import vlad.petrovskyi.internetshop.service.ShoppingCartService;
 
 public class AddProductToCartController extends HttpServlet {
-    private static final Long USER_ID = 1L;
+    private static final String USER_ID = "user_id";
 
     private static final Injector INJECTOR = Injector.getInstance("vlad.petrovskyi.internetshop");
     private final ProductService productService =
@@ -22,7 +22,7 @@ public class AddProductToCartController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         shoppingCartService.addProduct(
-                shoppingCartService.getByUserId(USER_ID),
+                shoppingCartService.getByUserId((Long) req.getSession().getAttribute(USER_ID)),
                 productService.get(Long.valueOf(req.getParameter("product_id"))));
         resp.sendRedirect(req.getContextPath() + "/allProductsToBuy");
     }

@@ -6,11 +6,13 @@ import java.util.stream.Collectors;
 import vlad.petrovskyi.internetshop.dao.OrderDao;
 import vlad.petrovskyi.internetshop.dao.ShoppingCartDao;
 import vlad.petrovskyi.internetshop.lib.Inject;
+import vlad.petrovskyi.internetshop.lib.Service;
 import vlad.petrovskyi.internetshop.model.Order;
 import vlad.petrovskyi.internetshop.model.Product;
 import vlad.petrovskyi.internetshop.model.User;
 import vlad.petrovskyi.internetshop.service.OrderService;
 
+@Service
 public class OrderServiceImpl implements OrderService {
 
     @Inject

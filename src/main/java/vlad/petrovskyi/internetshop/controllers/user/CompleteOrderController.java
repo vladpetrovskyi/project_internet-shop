@@ -12,7 +12,7 @@ import vlad.petrovskyi.internetshop.service.ShoppingCartService;
 import vlad.petrovskyi.internetshop.service.UserService;
 
 public class CompleteOrderController extends HttpServlet {
-    private static final Long USER_ID = 1L;
+    private static final String USER_ID = "user_id";
     private static final Injector INJECTOR = Injector.getInstance("vlad.petrovskyi.internetshop");
     private final OrderService orderService =
             (OrderService) INJECTOR.getInstance(OrderService.class);
@@ -23,9 +23,16 @@ public class CompleteOrderController extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        Long userId = (Long) req.getSession().getAttribute(USER_ID);
+        if (shoppingCartService.getByUserId(userId).getProducts().isEmpty()) {
+            String message = "Your shopping cart is empty!";
+            req.setAttribute("message", message);
+            req.getRequestDispatcher("/WEB-INF/views/shoppingcart/viewShoppingCart.jsp")
+                    .forward(req, resp);
+        }
         Order order = orderService.completeOrder(
-                shoppingCartService.getByUserId(USER_ID).getProducts(),
-                userService.get(USER_ID));
+                shoppingCartService.getByUserId(userId).getProducts(),
+                userService.get(userId));
         String messageStr = "Successful checkout! Your order number is #" + order.getId() + ".";
         req.setAttribute("message", messageStr);
         req.setAttribute("order", order);
