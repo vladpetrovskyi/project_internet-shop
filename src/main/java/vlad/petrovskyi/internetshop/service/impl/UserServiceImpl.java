@@ -1,13 +1,14 @@
 package vlad.petrovskyi.internetshop.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import vlad.petrovskyi.internetshop.dao.UserDao;
-import vlad.petrovskyi.internetshop.lib.Dao;
 import vlad.petrovskyi.internetshop.lib.Inject;
+import vlad.petrovskyi.internetshop.lib.Service;
 import vlad.petrovskyi.internetshop.model.User;
 import vlad.petrovskyi.internetshop.service.UserService;
 
-@Dao
+@Service
 public class UserServiceImpl implements UserService {
 
     @Inject
@@ -31,6 +32,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User update(User user) {
         return userDao.update(user);
+    }
+
+    @Override
+    public Optional<User> getByLogin(String login) {
+        return userDao.getByLogin(login);
     }
 
     @Override

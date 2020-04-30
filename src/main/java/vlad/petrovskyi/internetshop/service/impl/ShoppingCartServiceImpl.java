@@ -4,10 +4,12 @@ import java.util.List;
 import vlad.petrovskyi.internetshop.dao.ShoppingCartDao;
 import vlad.petrovskyi.internetshop.dao.UserDao;
 import vlad.petrovskyi.internetshop.lib.Inject;
+import vlad.petrovskyi.internetshop.lib.Service;
 import vlad.petrovskyi.internetshop.model.Product;
 import vlad.petrovskyi.internetshop.model.ShoppingCart;
 import vlad.petrovskyi.internetshop.service.ShoppingCartService;
 
+@Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Inject
