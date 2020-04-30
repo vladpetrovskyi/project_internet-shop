@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Your shopping cart</h1>
-<h3 style="text-align:center; color: brown">${message}</h3>
+<h3 style="text-align:center; color: red">${message}</h3>
 <table border="1">
     <tr>
         <th>Product</th>
