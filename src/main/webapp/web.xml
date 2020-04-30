@@ -110,4 +110,58 @@
         <servlet-name>userPage</servlet-name>
         <url-pattern>/userPage</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getAllOrders</servlet-name>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.db.orders.AllOrdersController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getAllOrders</servlet-name>
+        <url-pattern>/getAllOrders</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>completeOrder</servlet-name>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.user.CompleteOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>completeOrder</servlet-name>
+        <url-pattern>/completeOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>userOrders</servlet-name>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.user.UserOrdersController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>userOrders</servlet-name>
+        <url-pattern>/viewUserOrders</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>initialization</servlet-name>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.InitializationController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>initialization</servlet-name>
+        <url-pattern>/initialization</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>viewOrder</servlet-name>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.db.orders.ViewOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>viewOrder</servlet-name>
+        <url-pattern>/viewOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteOrder</servlet-name>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.db.orders.DeleteOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteOrder</servlet-name>
+        <url-pattern>/deleteOrder</url-pattern>
+    </servlet-mapping>
 </web-app>

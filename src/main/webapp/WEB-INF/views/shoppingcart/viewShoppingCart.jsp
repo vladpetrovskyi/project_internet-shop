@@ -23,6 +23,9 @@
     </c:forEach>
 </table>
 <p>Sum: ${sum}</p>
+<form method="post" action="${pageContext.request.contextPath}/completeOrder">
+    <button type="submit">Checkout</button><br>
+</form>
 <a href="${pageContext.request.contextPath}/allProductsToBuy">Add</a> product<br>
 <a href="${pageContext.request.contextPath}/userPage">Return to your profile</a><br>
 </body>
