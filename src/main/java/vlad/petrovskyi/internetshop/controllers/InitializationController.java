@@ -28,11 +28,11 @@ public class InitializationController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         productService.create(
-                new Product("iPhone 11", new BigDecimal("999.00")));
+                new Product("iPhone 11", new BigDecimal("999")));
         productService.create(
-                new Product("iPhone 11 Pro Max", new BigDecimal("1299.00")));
+                new Product("iPhone 11 Pro Max", new BigDecimal("1299")));
         productService.create(
-                new Product("iPhone Xr", new BigDecimal("699.00")));
+                new Product("iPhone Xr", new BigDecimal("699")));
 
         User michael = userService.create(new User("Michael", "mich234", "13243546"));
         User anton = userService.create(new User("Anton", "antoine2233", "1111"));
