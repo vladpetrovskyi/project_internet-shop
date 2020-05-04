@@ -35,11 +35,11 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/allProductsToBuy">Catalog<span
+                <a class="nav-link" href="${pageContext.request.contextPath}/products/allAvailable">Catalog<span
                         class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/userPage">Your homepage</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/user">Your homepage</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/initialization">Initialize<span
@@ -51,9 +51,9 @@
                     Lists
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/allProductsFromDb">Products</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/getAllUsers">Users</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/getAllOrders">Orders</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/products/allFromDb">Products</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/users/all">Users</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/orders/all">Orders</a>
                 </div>
             </li>
         </ul>
@@ -85,12 +85,12 @@
                             <c:out value="${product.price}$" />
                         </td>
                         <td>
-                            <a class="btn btn-outline-dark" href="${pageContext.request.contextPath}/deleteProductFromDb?product_id=${product.id}">Delete</a><br>
+                            <a class="btn btn-outline-dark" href="${pageContext.request.contextPath}/products/deleteFromDb?product_id=${product.id}">Delete</a><br>
                         </td>
                     </tr>
                 </c:forEach>
             </table><br>
-            <a class="btn btn-outline-dark float-left" href="${pageContext.request.contextPath}/addNewProduct" role="button" aria-pressed="true">Add new product</a>
+            <a class="btn btn-outline-dark float-left" href="${pageContext.request.contextPath}/products/addNew" role="button" aria-pressed="true">Add new product</a>
         </div>
     </div>
 </div>

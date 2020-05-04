@@ -34,7 +34,7 @@ public class RegistrationController extends HttpServlet {
         if (pass.equals(passRepeat)) {
             Long id = userService.create(new User(nameSurname, login, pass)).getId();
             shoppingCartService.create(id);
-            resp.sendRedirect(req.getContextPath() + "/userPage");
+            resp.sendRedirect(req.getContextPath() + "/user/main");
         } else {
             req.setAttribute("message", "Passwords do not match!");
             req.getRequestDispatcher("/WEB-INF/views/users/registration.jsp").forward(req, resp);

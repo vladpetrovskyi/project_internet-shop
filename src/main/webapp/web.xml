@@ -23,47 +23,47 @@
 
     <servlet>
         <servlet-name>getAllUsers</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.db.users.GetAllUsersController</servlet-class>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.user.GetAllUsersController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>getAllUsers</servlet-name>
-        <url-pattern>/getAllUsers</url-pattern>
+        <url-pattern>/users/all</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>deleteUser</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.db.users.DeleteUserController</servlet-class>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.user.DeleteUserController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteUser</servlet-name>
-        <url-pattern>/deleteUser</url-pattern>
+        <url-pattern>/users/delete</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>getAllProductsFromDb</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.db.products.GetAllProductsController</servlet-class>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.products.GetAllProductsInDbController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>getAllProductsFromDb</servlet-name>
-        <url-pattern>/allProductsFromDb</url-pattern>
+        <url-pattern>/products/allFromDb</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>addNewProduct</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.db.products.AddProductController</servlet-class>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.products.AddProductController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>addNewProduct</servlet-name>
-        <url-pattern>/addNewProduct</url-pattern>
+        <url-pattern>/products/addNew</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>deleteProductFromDb</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.db.products.DeleteProductController</servlet-class>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.products.DeleteProductController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteProductFromDb</servlet-name>
-        <url-pattern>/deleteProductFromDb</url-pattern>
+        <url-pattern>/products/deleteFromDb</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -72,16 +72,16 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>viewCart</servlet-name>
-        <url-pattern>/viewCart</url-pattern>
+        <url-pattern>/user/cart</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>allProductsToBuy</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.user.GetAllProductsController</servlet-class>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.products.GetAllAvailableToUserProductsController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>allProductsToBuy</servlet-name>
-        <url-pattern>/allProductsToBuy</url-pattern>
+        <url-pattern>/products/allAvailable</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -90,7 +90,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>addToCart</servlet-name>
-        <url-pattern>/addToCart</url-pattern>
+        <url-pattern>/cart/product/add</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -99,7 +99,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteFromCart</servlet-name>
-        <url-pattern>/deleteFromCart</url-pattern>
+        <url-pattern>/cart/delete</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -108,34 +108,34 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>userPage</servlet-name>
-        <url-pattern>/userPage</url-pattern>
+        <url-pattern>/user</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>getAllOrders</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.db.orders.AllOrdersController</servlet-class>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.orders.AllOrdersController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>getAllOrders</servlet-name>
-        <url-pattern>/getAllOrders</url-pattern>
+        <url-pattern>/orders/all</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>completeOrder</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.user.CompleteOrderController</servlet-class>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.orders.CompleteOrderController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>completeOrder</servlet-name>
-        <url-pattern>/completeOrder</url-pattern>
+        <url-pattern>/cart/checkout</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>userOrders</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.user.UserOrdersController</servlet-class>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.orders.UserOrdersController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>userOrders</servlet-name>
-        <url-pattern>/viewUserOrders</url-pattern>
+        <url-pattern>/user/orders</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -149,25 +149,25 @@
 
     <servlet>
         <servlet-name>viewOrder</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.db.orders.ViewOrderController</servlet-class>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.orders.ViewOrderController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>viewOrder</servlet-name>
-        <url-pattern>/viewOrder</url-pattern>
+        <url-pattern>/user/order/view</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>deleteOrder</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.db.orders.DeleteOrderController</servlet-class>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.orders.DeleteOrderController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteOrder</servlet-name>
-        <url-pattern>/deleteOrder</url-pattern>
+        <url-pattern>/orders/delete</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>loginPage</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.user.LoginController</servlet-class>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.LoginController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>loginPage</servlet-name>

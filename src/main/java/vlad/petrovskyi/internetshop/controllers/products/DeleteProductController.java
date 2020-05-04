@@ -1,4 +1,4 @@
-package vlad.petrovskyi.internetshop.controllers.db.orders;
+package vlad.petrovskyi.internetshop.controllers.products;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,16 +6,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import vlad.petrovskyi.internetshop.lib.Injector;
-import vlad.petrovskyi.internetshop.service.OrderService;
+import vlad.petrovskyi.internetshop.service.ProductService;
 
-public class AllOrdersController extends HttpServlet {
+public class DeleteProductController extends HttpServlet {
+
     private static final Injector INJECTOR = Injector.getInstance("vlad.petrovskyi.internetshop");
-    private final OrderService orderService =
-            (OrderService) INJECTOR.getInstance(OrderService.class);
+    private final ProductService productService =
+            (ProductService) INJECTOR.getInstance(ProductService.class);
 
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.setAttribute("orders", orderService.getAll());
-        req.getRequestDispatcher("/WEB-INF/views/orders/allOrders.jsp").forward(req, resp);
+        productService.delete(Long.valueOf(req.getParameter("product_id")));
+        resp.sendRedirect(req.getContextPath() + "/products/allFromDb");
     }
 }

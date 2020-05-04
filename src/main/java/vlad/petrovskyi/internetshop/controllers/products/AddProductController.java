@@ -1,4 +1,4 @@
-package vlad.petrovskyi.internetshop.controllers.db.products;
+package vlad.petrovskyi.internetshop.controllers.products;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -29,6 +29,6 @@ public class AddProductController extends HttpServlet {
         String price = req.getParameter("price");
 
         productService.create(new Product(name, BigDecimal.valueOf(Long.parseLong(price))));
-        resp.sendRedirect(req.getContextPath() + "/allProductsFromDb");
+        resp.sendRedirect(req.getContextPath() + "/products/allFromDb");
     }
 }

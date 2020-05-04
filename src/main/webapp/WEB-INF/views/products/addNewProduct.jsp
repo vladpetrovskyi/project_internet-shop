@@ -42,7 +42,7 @@
         <button type="submit" class="btn btn-dark">Add</button>
     </div></form>
 <br>
-<div class="container" style="text-align: center"><a href="${pageContext.request.contextPath}/allProductsFromDb">Return</a><br></div>
+<div class="container" style="text-align: center"><a href="${pageContext.request.contextPath}/products/allFromDb">Return</a><br></div>
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function () {

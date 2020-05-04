@@ -1,4 +1,4 @@
-package vlad.petrovskyi.internetshop.controllers.db.products;
+package vlad.petrovskyi.internetshop.controllers.products;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,7 +10,7 @@ import vlad.petrovskyi.internetshop.lib.Injector;
 import vlad.petrovskyi.internetshop.model.Product;
 import vlad.petrovskyi.internetshop.service.ProductService;
 
-public class GetAllProductsController extends HttpServlet {
+public class GetAllProductsInDbController extends HttpServlet {
 
     private static final Injector INJECTOR = Injector.getInstance("vlad.petrovskyi.internetshop");
     private final ProductService productService =
