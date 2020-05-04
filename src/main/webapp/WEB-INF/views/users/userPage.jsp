@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -56,7 +56,7 @@
 </nav>
 <div class="container py-5">
     <header class="text-center text-white py-5">
-        <h1 class="display-2 font-weight mb-4">Hello, ${user_name}!</h1><br><br><br><br>
+        <h1 class="display-2 font-weight mb-4">Hello, ${userName}!</h1><br><br><br><br>
 <%--        <p class="font-italic">Snippet By <a href="https://bootstrapious.com" class="text-white">--%>
 <%--            <u>Bootstrapious</u></a>--%>
 <%--        </p>--%>
