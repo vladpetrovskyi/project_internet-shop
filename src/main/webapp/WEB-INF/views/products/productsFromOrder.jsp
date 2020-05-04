@@ -33,14 +33,14 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/allProductsToBuy">Catalog<span
+                <a class="nav-link" href="${pageContext.request.contextPath}/products/allAvailable">Catalog<span
                         class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/userPage">My profile</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/user">My profile</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/viewUserOrders">My orders</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/user/orders">My orders</a>
             </li>
             <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
@@ -48,7 +48,7 @@
                     My shopping cart
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/viewCart">View</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/user/cart">View</a>
                     <%--<a class="dropdown-item" href="${pageContext.request.contextPath}/completeOrder">Checkout</a>--%>
                 </div>
             </li>

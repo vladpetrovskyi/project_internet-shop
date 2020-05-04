@@ -10,7 +10,7 @@ import vlad.petrovskyi.internetshop.lib.Injector;
 import vlad.petrovskyi.internetshop.model.Product;
 import vlad.petrovskyi.internetshop.service.ProductService;
 
-public class GetAllProductsOfUserController extends HttpServlet {
+public class GetAllAvailableToUserProductsController extends HttpServlet {
 
     private static final Injector INJECTOR = Injector.getInstance("vlad.petrovskyi.internetshop");
     private final ProductService productService =
@@ -21,6 +21,6 @@ public class GetAllProductsOfUserController extends HttpServlet {
             throws ServletException, IOException {
         List<Product> productList = productService.getAll();
         req.setAttribute("products", productList);
-        req.getRequestDispatcher("WEB-INF/views/products/allProductsBuy.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/products/allProductsBuy.jsp").forward(req, resp);
     }
 }

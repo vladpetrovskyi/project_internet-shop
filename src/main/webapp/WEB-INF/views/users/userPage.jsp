@@ -29,14 +29,14 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/allProductsToBuy">Catalog<span
+                <a class="nav-link" href="${pageContext.request.contextPath}/products/allAvailable">Catalog<span
                         class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/userPage">My profile</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/user">My profile</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/viewUserOrders">My orders</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/user/orders">My orders</a>
             </li>
             <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
@@ -44,7 +44,7 @@
                     My shopping cart
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/viewCart">View</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/user/cart">View</a>
                     <%--<a class="dropdown-item" href="${pageContext.request.contextPath}/completeOrder">Checkout</a>--%>
                 </div>
             </li>
@@ -56,7 +56,7 @@
 </nav>
 <div class="container py-5">
     <header class="text-center text-white py-5">
-        <h1 class="display-2 font-weight mb-4">Hello, ${userName}!</h1><br><br><br><br>
+        <h1 class="display-2 font-weight mb-4">Hello, ${user_name}!</h1><br><br><br><br>
 <%--        <p class="font-italic">Snippet By <a href="https://bootstrapious.com" class="text-white">--%>
 <%--            <u>Bootstrapious</u></a>--%>
 <%--        </p>--%>
@@ -65,7 +65,7 @@
 <%--    <p class="lead text-center">Please, open our <a href="${pageContext.request.contextPath}/allProductsToBuy" class="text-white"><u>catalog</u></a> and select any of the available products.</p>--%>
 <%--</div>--%>
     <footer class="text-center text-white py-5">
-        <p class="lead mb-5"><span style="font-size: 125%;">Please, open our <a href="${pageContext.request.contextPath}/allProductsToBuy" class="text-white"><u>catalog</u></a> and select any of the available products.</span></p>
+        <p class="lead mb-5"><span style="font-size: 125%;">Please, open our <a href="${pageContext.request.contextPath}/products/allAvailable" class="text-white"><u>catalog</u></a> and select any of the available products.</span></p>
     </footer>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
