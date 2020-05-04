@@ -1,4 +1,4 @@
-package vlad.petrovskyi.internetshop.controllers.user;
+package vlad.petrovskyi.internetshop.controllers;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
