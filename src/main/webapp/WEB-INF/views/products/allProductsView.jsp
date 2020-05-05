@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>All users</title>
+    <title>Products</title>
 </head>
 <style>
     body {
@@ -27,7 +27,7 @@
 </style>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light text-center">
-    <a class="navbar-brand" href="${pageContext.request.contextPath}/admin">Vilka</a>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/">Vilka</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -35,53 +35,39 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/products/allFromDb">Catalog<span
+                <a class="nav-link" href="${pageContext.request.contextPath}/products/allAvailable">Catalog<span
                         class="sr-only">(current)</span></a>
             </li>
-            <%--            <li class="nav-item active">--%>
-            <%--                <a class="nav-link" href="${pageContext.request.contextPath}/admin">Your homepage</a>--%>
-            <%--            </li>--%>
-            <li class="nav-item dropdown active">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Lists
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/products/allFromDb">Products</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/users/all">Users</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/orders/all">Orders</a>
-                </div>
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/initialization">Initialize<span
+                        class="sr-only">(current)</span></a>
             </li>
         </ul>
     </div>
-    <span class="nav-item active float-right">
-        <a class="nav-link text-dark" href="${pageContext.request.contextPath}/logout">Sign out</a>
+    <span class="navbar-text float-right">
+      You order - we deliver
     </span>
 </nav>
 <div class="container text-center" style="width: 50%">
     <div class="card border-0 shadow my-5">
         <div class="card-body p-5">
-            <h1>Users</h1><br>
+            <h1>Catalog</h1><br>
             <table class="table center">
                 <tr>
                     <th>ID#</th>
-                    <th>Login</th>
                     <th>Name</th>
-                    <th>Action</th>
+                    <th>Price</th>
                 </tr>
-                <c:forEach var="user" items="${users}">
+                <c:forEach var="product" items="${products}">
                     <tr>
-                            <td>
-                                <c:out value="${user.id}" />
-                            </td>
-                            <td>
-                                <c:out value="${user.login}" />
-                            </td>
-                            <td>
-                                <c:out value="${user.name}" />
-                            </td>
                         <td>
-                            <a class="btn btn-outline-dark" href="${pageContext.request.contextPath}/users/delete?user_id=${user.id}">Delete</a><br>
+                            <c:out value="${product.id}" />
+                        </td>
+                        <td>
+                            <c:out value="${product.name}" />
+                        </td>
+                        <td>
+                            <c:out value="${product.price}$" />
                         </td>
                     </tr>
                 </c:forEach>

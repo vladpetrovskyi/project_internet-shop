@@ -32,14 +32,17 @@ public class AuthenticationFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
 
         String url = req.getServletPath();
-        if (url.equals("/login") || url.equals("/registration")) {
+        if (url.equals("/login") || url.equals("/registration")
+                || url.equals("/initialization")
+                || url.equals("/")
+                || url.equals("/products/view")) {
             filterChain.doFilter(req, resp);
             return;
         }
 
         Long userId = (Long) req.getSession().getAttribute(USER_ID);
         if (userId == null || userService.get(userId) == null) {
-            resp.sendRedirect("/login");
+            resp.sendRedirect("/");
             return;
         }
 

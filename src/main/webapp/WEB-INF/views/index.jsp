@@ -37,26 +37,12 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/products/allAvailable">Catalog<span
+                <a class="nav-link" href="${pageContext.request.contextPath}/products/view">Catalog<span
                         class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/user">Your homepage</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/initialization">Initialize<span
                         class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Lists
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/products/allFromDb">Products</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/users/all">Users</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/orders/all">Orders</a>
-                </div>
             </li>
         </ul>
     </div>

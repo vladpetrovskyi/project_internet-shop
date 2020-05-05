@@ -21,7 +21,7 @@
 </style>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light text-center">
-    <a class="navbar-brand" href="${pageContext.request.contextPath}/">Vilka</a>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/user">Vilka</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -32,9 +32,9 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/products/allAvailable">Catalog<span
                         class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/user">My profile</a>
-            </li>
+<%--            <li class="nav-item active">--%>
+<%--                <a class="nav-link" href="${pageContext.request.contextPath}/user">My profile</a>--%>
+<%--            </li>--%>
             <li class="nav-item active">
                 <a class="nav-link" href="${pageContext.request.contextPath}/user/orders">My orders</a>
             </li>
@@ -67,6 +67,7 @@
     <footer class="text-center text-white py-5">
         <p class="lead mb-5"><span style="font-size: 125%;">Please, open our <a href="${pageContext.request.contextPath}/products/allAvailable" class="text-white"><u>catalog</u></a> and select any of the available products.</span></p>
     </footer>
+</div>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>

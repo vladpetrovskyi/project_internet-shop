@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import vlad.petrovskyi.internetshop.exceptions.AuthenticationException;
 import vlad.petrovskyi.internetshop.lib.Injector;
+import vlad.petrovskyi.internetshop.model.Role;
 import vlad.petrovskyi.internetshop.model.User;
 import vlad.petrovskyi.internetshop.security.AuthenticationService;
 
@@ -28,9 +29,9 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         String login = req.getParameter("login");
         String pass = req.getParameter("pass");
-
+        User user;
         try {
-            User user = authService.login(login, pass);
+            user = authService.login(login, pass);
             HttpSession session = req.getSession();
             session.setAttribute("user_id", user.getId());
         } catch (AuthenticationException e) {
@@ -39,6 +40,10 @@ public class LoginController extends HttpServlet {
             return;
         }
 
-        resp.sendRedirect(req.getContextPath() + "/user");
+        if (user.getRoles().stream().anyMatch(r -> r.getRoleName().equals(Role.RoleName.ADMIN))) {
+            resp.sendRedirect(req.getContextPath() + "/admin");
+        } else {
+            resp.sendRedirect(req.getContextPath() + "/user");
+        }
     }
 }

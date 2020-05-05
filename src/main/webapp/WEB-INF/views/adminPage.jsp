@@ -1,7 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!doctype html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>All users</title>
+    <title>Main page</title>
 </head>
 <style>
     body {
@@ -19,13 +18,16 @@
         background-size: cover;
         -o-background-size: cover;
     }
-
-    table.center {
-        margin-left:auto;
-        margin-right:auto;
-    }
 </style>
-<body>
+<body class="text-center bg-light text-dark">
+<%--<div class="py-md-1" style="text-align: center;">--%>
+<%--    <h1>Welcome to the homepage!</h1>--%>
+<%--    <h5><em>Please choose from one of the next categories:</em></h5>--%>
+<%--</div>--%>
+<%--<div class="text-center "></div>--%>
+<div class="text-center">
+    
+</div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light text-center">
     <a class="navbar-brand" href="${pageContext.request.contextPath}/admin">Vilka</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -38,9 +40,9 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/products/allFromDb">Catalog<span
                         class="sr-only">(current)</span></a>
             </li>
-            <%--            <li class="nav-item active">--%>
-            <%--                <a class="nav-link" href="${pageContext.request.contextPath}/admin">Your homepage</a>--%>
-            <%--            </li>--%>
+<%--            <li class="nav-item active">--%>
+<%--                <a class="nav-link" href="${pageContext.request.contextPath}/admin">Your homepage</a>--%>
+<%--            </li>--%>
             <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,36 +60,10 @@
         <a class="nav-link text-dark" href="${pageContext.request.contextPath}/logout">Sign out</a>
     </span>
 </nav>
-<div class="container text-center" style="width: 50%">
-    <div class="card border-0 shadow my-5">
-        <div class="card-body p-5">
-            <h1>Users</h1><br>
-            <table class="table center">
-                <tr>
-                    <th>ID#</th>
-                    <th>Login</th>
-                    <th>Name</th>
-                    <th>Action</th>
-                </tr>
-                <c:forEach var="user" items="${users}">
-                    <tr>
-                            <td>
-                                <c:out value="${user.id}" />
-                            </td>
-                            <td>
-                                <c:out value="${user.login}" />
-                            </td>
-                            <td>
-                                <c:out value="${user.name}" />
-                            </td>
-                        <td>
-                            <a class="btn btn-outline-dark" href="${pageContext.request.contextPath}/users/delete?user_id=${user.id}">Delete</a><br>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </table>
-        </div>
-    </div>
+<div class="container py-5">
+    <header class="text-center text-white py-5">
+        <h1 class="display-2 font-weight mb-4">Hello, ${user_name}!</h1><br><br><br><br>
+    </header>
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

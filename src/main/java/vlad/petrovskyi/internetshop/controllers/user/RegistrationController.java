@@ -38,8 +38,7 @@ public class RegistrationController extends HttpServlet {
             Long id = user.getId();
             shoppingCartService.create(id);
             user.setRoles(Set.of(Role.of("USER")));
-
-            resp.sendRedirect(req.getContextPath() + "/user/main");
+            resp.sendRedirect(req.getContextPath() + "/login");
         } else {
             req.setAttribute("message", "Passwords do not match!");
             req.getRequestDispatcher("/WEB-INF/views/users/registration.jsp").forward(req, resp);

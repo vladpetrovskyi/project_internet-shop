@@ -25,7 +25,7 @@
 </style>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light text-center">
-    <a class="navbar-brand" href="${pageContext.request.contextPath}/">Vilka</a>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/admin">Vilka</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -36,20 +36,18 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/products/allAvailable">Catalog<span
                         class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/user">My profile</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/user/orders">My orders</a>
-            </li>
+            <%--            <li class="nav-item active">--%>
+            <%--                <a class="nav-link" href="${pageContext.request.contextPath}/admin">Your homepage</a>--%>
+            <%--            </li>--%>
             <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    My shopping cart
+                    Lists
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/user/cart">View</a>
-                    <%--<a class="dropdown-item" href="${pageContext.request.contextPath}/completeOrder">Checkout</a>--%>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/products/allFromDb">Products</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/users/all">Users</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/orders/all">Orders</a>
                 </div>
             </li>
         </ul>
@@ -61,8 +59,7 @@
 <div class="container" style="width: 50%">
     <div class="card border-0 shadow my-5">
         <div class="card-body p-5">
-            <h1 style="text-align: center">Your order #${order.id}</h1><br>
-            <h3 style="text-align:center; color: red">${message}</h3><br>
+            <h1 style="text-align: center">Order #${order.id}</h1><br>
             <table class="table center text-center">
                 <tr>
                     <th>ID</th>
@@ -85,6 +82,7 @@
             </table><br>
             <h4 class="text-dark text-right">Total: ${sum}$</h4><br>
         </div>
+        <a class="btn btn-outline-dark" href="${pageContext.request.contextPath}/orders/delete?order_id=${order.id}">Delete</a>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

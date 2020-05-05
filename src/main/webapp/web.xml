@@ -85,6 +85,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>allProductsView</servlet-name>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.products.ViewAvailableProductsController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>allProductsView</servlet-name>
+        <url-pattern>/products/view</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>addToCart</servlet-name>
         <servlet-class>vlad.petrovskyi.internetshop.controllers.shoppingcart.AddProductToCartController</servlet-class>
     </servlet>
@@ -181,6 +190,24 @@
     <servlet-mapping>
         <servlet-name>logout</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>adminMainPage</servlet-name>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.AdminPageController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adminMainPage</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>accessDenied</servlet-name>
+        <servlet-class>vlad.petrovskyi.internetshop.controllers.AccessDeniedController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>accessDenied</servlet-name>
+        <url-pattern>/accDen</url-pattern>
     </servlet-mapping>
 
     <filter>

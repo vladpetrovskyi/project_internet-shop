@@ -35,7 +35,7 @@
     </div>
     <div style="text-align: center">
         <button type="submit" class="btn btn-dark">Submit</button>
-    </div>
+    </div><br>
 </form>
 <br>
 <script>
@@ -60,6 +60,8 @@
 </script>
 <div class="mx-auto" style="text-align: center"><p>Are you a new user?
     <a href="${pageContext.request.contextPath}/registration">Sign up!</a></p></div>
+<div class="mx-auto" style="text-align: center"><p>
+    <a href="${pageContext.request.contextPath}/">Return</a></p></div>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
