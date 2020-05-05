@@ -2,12 +2,14 @@ package vlad.petrovskyi.internetshop.controllers;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import vlad.petrovskyi.internetshop.lib.Injector;
 import vlad.petrovskyi.internetshop.model.Product;
+import vlad.petrovskyi.internetshop.model.Role;
 import vlad.petrovskyi.internetshop.model.User;
 import vlad.petrovskyi.internetshop.service.OrderService;
 import vlad.petrovskyi.internetshop.service.ProductService;
@@ -34,10 +36,16 @@ public class InitializationController extends HttpServlet {
         productService.create(
                 new Product("iPhone Xr", new BigDecimal("699")));
 
-        User michael = userService.create(new User("Michael", "mich234", "13243546"));
-        User anton = userService.create(new User("Anton", "antoine2233", "1111"));
-        User eugene = userService.create(new User("Eugene", "yogibear", "123454321"));
-        User john = userService.create(new User("John", "j_mm3", "44113468"));
+        User admin = userService.create(new User("Vlad Petrovskyi", "admin", "admin"));
+        admin.setRoles(Set.of(Role.of("ADMIN")));
+        User michael = userService.create(new User("Michael Weber", "mich234", "13243546"));
+        michael.setRoles(Set.of(Role.of("USER")));
+        User anton = userService.create(new User("Anton Kurochkin", "antoine2233", "1111"));
+        anton.setRoles(Set.of(Role.of("USER")));
+        User eugene = userService.create(new User("Rob Whilson", "robbi", "123454321"));
+        eugene.setRoles(Set.of(Role.of("USER")));
+        User john = userService.create(new User("John Michael", "j_mm3", "44113468"));
+        john.setRoles(Set.of(Role.of("USER")));
 
         shoppingCartService.create(michael.getId());
         shoppingCartService.create(anton.getId());

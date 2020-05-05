@@ -58,8 +58,8 @@
             </li>
         </ul>
     </div>
-    <span class="navbar-text float-right">
-      You order - we deliver
+    <span class="nav-item active float-right">
+        <a class="nav-link text-dark" href="${pageContext.request.contextPath}/logout">Sign out</a>
     </span>
 </nav>
 <div class="container text-center" style="width: 50%">

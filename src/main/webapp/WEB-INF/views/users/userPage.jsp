@@ -51,7 +51,7 @@
         </ul>
     </div>
     <span class="nav-item active float-right">
-        <a class="nav-link text-dark" href="#">Sign out</a>
+        <a class="nav-link text-dark" href="${pageContext.request.contextPath}/logout">Sign out</a>
     </span>
 </nav>
 <div class="container py-5">
