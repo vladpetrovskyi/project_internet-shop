@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import vlad.petrovskyi.internetshop.lib.Injector;
 import vlad.petrovskyi.internetshop.model.Order;
 import vlad.petrovskyi.internetshop.model.Role;
-import vlad.petrovskyi.internetshop.model.User;
 import vlad.petrovskyi.internetshop.service.OrderService;
 import vlad.petrovskyi.internetshop.service.UserService;
 
@@ -26,9 +25,9 @@ public class ViewOrderController extends HttpServlet {
         Order order = orderService.get(Long.parseLong(req.getParameter("order_id")));
         req.setAttribute("order", order);
         req.setAttribute("sum", orderService.sum(order.getProducts()));
-        User user = userService.get((Long) req.getSession().getAttribute(USER_ID));
 
-        if (user.getRoles()
+        if (userService.get((Long) req.getSession().getAttribute(USER_ID))
+                .getRoles()
                 .stream()
                 .anyMatch(r -> r.getRoleName().equals(Role.RoleName.ADMIN))) {
             req.getRequestDispatcher("/WEB-INF/views/products/productsFromOrderAdmin.jsp")
