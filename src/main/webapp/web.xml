@@ -201,15 +201,6 @@
         <url-pattern>/admin</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>accessDenied</servlet-name>
-        <servlet-class>vlad.petrovskyi.internetshop.controllers.user.AccessDeniedController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>accessDenied</servlet-name>
-        <url-pattern>/accDen</url-pattern>
-    </servlet-mapping>
-
     <filter>
         <filter-name>AuthenticationFilter</filter-name>
         <filter-class>vlad.petrovskyi.internetshop.web.filters.AuthenticationFilter</filter-class>

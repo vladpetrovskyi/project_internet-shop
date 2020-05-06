@@ -60,7 +60,7 @@ public class AuthorizationFilter implements Filter {
 
         if (!isAuthorized(userService.get((Long) req.getSession().getAttribute(USER_ID)),
                 roleSet)) {
-            resp.sendRedirect(req.getContextPath() + "/accDen");
+            req.getRequestDispatcher("/WEB-INF/views/accessDenied.jsp").forward(req, resp);
             return;
         }
         filterChain.doFilter(req, resp);
