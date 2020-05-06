@@ -1,11 +1,13 @@
 package vlad.petrovskyi.internetshop.controllers.user;
 
 import java.io.IOException;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import vlad.petrovskyi.internetshop.lib.Injector;
+import vlad.petrovskyi.internetshop.model.Role;
 import vlad.petrovskyi.internetshop.model.User;
 import vlad.petrovskyi.internetshop.service.ShoppingCartService;
 import vlad.petrovskyi.internetshop.service.UserService;
@@ -32,9 +34,11 @@ public class RegistrationController extends HttpServlet {
         String nameSurname = req.getParameter("name_Surname");
 
         if (pass.equals(passRepeat)) {
-            Long id = userService.create(new User(nameSurname, login, pass)).getId();
+            User user = userService.create(new User(nameSurname, login, pass));
+            Long id = user.getId();
             shoppingCartService.create(id);
-            resp.sendRedirect(req.getContextPath() + "/user/main");
+            user.setRoles(Set.of(Role.of("USER")));
+            resp.sendRedirect(req.getContextPath() + "/login");
         } else {
             req.setAttribute("message", "Passwords do not match!");
             req.getRequestDispatcher("/WEB-INF/views/users/registration.jsp").forward(req, resp);

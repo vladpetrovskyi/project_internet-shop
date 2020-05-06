@@ -27,7 +27,7 @@
 </style>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light text-center">
-    <a class="navbar-brand" href="${pageContext.request.contextPath}/">Vilka</a>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/admin">Vilka</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -35,17 +35,10 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/products/allAvailable">Catalog<span
+                <a class="nav-link" href="${pageContext.request.contextPath}/products/allFromDb">Catalog<span
                         class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/user">Your homepage</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/initialization">Initialize<span
-                        class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Lists
@@ -58,8 +51,8 @@
             </li>
         </ul>
     </div>
-    <span class="navbar-text float-right">
-      You order - we deliver
+    <span class="nav-item active float-right">
+        <a class="nav-link text-dark" href="${pageContext.request.contextPath}/logout">Sign out</a>
     </span>
 </nav>
 <div class="container text-center" style="width: 50%">

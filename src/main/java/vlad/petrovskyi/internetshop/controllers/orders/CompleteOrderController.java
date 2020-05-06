@@ -37,7 +37,7 @@ public class CompleteOrderController extends HttpServlet {
         req.setAttribute("message", messageStr);
         req.setAttribute("order", order);
         req.setAttribute("sum", orderService.sum(order.getProducts()));
-        req.getRequestDispatcher("/WEB-INF/views/products/productsFromOrder.jsp")
+        req.getRequestDispatcher("/WEB-INF/views/products/productsFromOrderUser.jsp")
                 .forward(req, resp);
     }
 }

@@ -1,15 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-    <title>Your orders</title>
+    <title>Your order</title>
 </head>
 <style>
     body {
@@ -38,6 +36,9 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/products/allAvailable">Catalog<span
                         class="sr-only">(current)</span></a>
             </li>
+            <%--            <li class="nav-item active">--%>
+            <%--                <a class="nav-link" href="${pageContext.request.contextPath}/user">My profile</a>--%>
+            <%--            </li>--%>
             <li class="nav-item active">
                 <a class="nav-link" href="${pageContext.request.contextPath}/user/orders">My orders</a>
             </li>
@@ -56,37 +57,37 @@
         <a class="nav-link text-dark" href="${pageContext.request.contextPath}/logout">Sign out</a>
     </span>
 </nav>
-<div class="container text-center" style="width: 50%">
+<div class="container" style="width: 50%">
     <div class="card border-0 shadow my-5">
         <div class="card-body p-5">
-            <h1>Your orders</h1><br>
-            <table class="table center">
+            <h1 style="text-align: center">Your order #${order.id}</h1><br>
+            <h3 style="text-align:center; color: red">${message}</h3><br>
+            <table class="table center text-center">
                 <tr>
-                    <th>ID#</th>
-                    <th>Action</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
                 </tr>
-                    <c:forEach var="order" items="${orders}">
-                        <tr>
-                            <td>
-                                <c:out value="${order.id}" />
-                            </td>
-                            <td>
-                                <a class="btn btn-outline-dark" href="${pageContext.request.contextPath}/user/order/view?order_id=${order.id}">View</a>
-                            </td>
-                        </tr>
-                    </c:forEach>
-            </table>
+                <c:forEach var="product" items="${order.getProducts()}">
+                    <tr>
+                        <td>
+                            <c:out value="${product.getId()}" />
+                        </td>
+                        <td>
+                            <c:out value="${product.getName()}" />
+                        </td>
+                        <td>
+                            <c:out value="${product.getPrice()}" />
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table><br>
+            <h4 class="text-dark text-right">Total: ${sum}$</h4><br>
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>

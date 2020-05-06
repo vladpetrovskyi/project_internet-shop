@@ -19,7 +19,6 @@
         <div class="form-group px-md-5">
             <label for="login">Login</label>
             <input type="text" class="form-control" id="login" aria-describedby="loginHelp" name="login" required>
-            <%--            <small id="loginHelp" class="form-text text-muted">We'll never share your data with anyone else.</small>--%>
             <div class="invalid-feedback">
                 This field is mandatory!
             </div>
@@ -27,7 +26,6 @@
         <div class="form-group px-md-5">
             <label for="password">Password</label>
             <input type="password" class="form-control" id="password" aria-describedby="passHelp" name="pass" required>
-            <%--            <small id="passHelp" class="form-text text-muted">Your password must contain 8-20 characters.</small>--%>
             <div class="invalid-feedback">
                 This field is mandatory!
             </div>
@@ -35,7 +33,7 @@
     </div>
     <div style="text-align: center">
         <button type="submit" class="btn btn-dark">Submit</button>
-    </div>
+    </div><br>
 </form>
 <br>
 <script>
@@ -60,6 +58,8 @@
 </script>
 <div class="mx-auto" style="text-align: center"><p>Are you a new user?
     <a href="${pageContext.request.contextPath}/registration">Sign up!</a></p></div>
+<div class="mx-auto" style="text-align: center"><p>
+    <a href="${pageContext.request.contextPath}/">Return</a></p></div>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>

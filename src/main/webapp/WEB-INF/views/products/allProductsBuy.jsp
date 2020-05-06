@@ -27,7 +27,7 @@
 </style>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light text-center">
-    <a class="navbar-brand" href="${pageContext.request.contextPath}/">Vilka</a>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/user">Vilka</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -39,9 +39,6 @@
                         class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/user">My profile</a>
-            </li>
-            <li class="nav-item active">
                 <a class="nav-link" href="${pageContext.request.contextPath}/user/orders">My orders</a>
             </li>
             <li class="nav-item dropdown active">
@@ -51,13 +48,12 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="${pageContext.request.contextPath}/user/cart">View</a>
-                    <%--<a class="dropdown-item" href="${pageContext.request.contextPath}/completeOrder">Checkout</a>--%>
                 </div>
             </li>
         </ul>
     </div>
     <span class="nav-item active float-right">
-        <a class="nav-link text-dark" href="#">Sign out</a>
+        <a class="nav-link text-dark" href="${pageContext.request.contextPath}/logout">Sign out</a>
     </span>
 </nav>
 <div class="container text-center" style="width: 50%">

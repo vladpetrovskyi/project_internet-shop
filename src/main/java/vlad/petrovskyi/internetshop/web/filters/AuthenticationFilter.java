@@ -1,6 +1,8 @@
 package vlad.petrovskyi.internetshop.web.filters;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -17,10 +19,15 @@ public class AuthenticationFilter implements Filter {
     private static final String USER_ID = "user_id";
     private static final Injector INJECTOR = Injector.getInstance("vlad.petrovskyi.internetshop");
     private final UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
+    private final Set<String> allowedUrls = new HashSet<>();
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
+        allowedUrls.add("/login");
+        allowedUrls.add("/registration");
+        allowedUrls.add("/initialization");
+        allowedUrls.add("/");
+        allowedUrls.add("/products/view");
     }
 
     @Override
@@ -32,7 +39,7 @@ public class AuthenticationFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
 
         String url = req.getServletPath();
-        if (url.equals("/login") || url.equals("/registration")) {
+        if (allowedUrls.contains(url)) {
             filterChain.doFilter(req, resp);
             return;
         }

@@ -1,5 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Your orders</title>
+    <title>Main page</title>
 </head>
 <style>
     body {
@@ -19,15 +18,13 @@
         background-size: cover;
         -o-background-size: cover;
     }
-
-    table.center {
-        margin-left:auto;
-        margin-right:auto;
-    }
 </style>
-<body>
+<body class="text-center bg-light text-dark">
+<div class="text-center">
+    
+</div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light text-center">
-    <a class="navbar-brand" href="${pageContext.request.contextPath}/user">Vilka</a>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/admin">Vilka</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -35,19 +32,18 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/products/allAvailable">Catalog<span
+                <a class="nav-link" href="${pageContext.request.contextPath}/products/allFromDb">Catalog<span
                         class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/user/orders">My orders</a>
             </li>
             <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    My shopping cart
+                    Lists
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/user/cart">View</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/products/allFromDb">Products</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/users/all">Users</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/orders/all">Orders</a>
                 </div>
             </li>
         </ul>
@@ -56,28 +52,10 @@
         <a class="nav-link text-dark" href="${pageContext.request.contextPath}/logout">Sign out</a>
     </span>
 </nav>
-<div class="container text-center" style="width: 50%">
-    <div class="card border-0 shadow my-5">
-        <div class="card-body p-5">
-            <h1>Your orders</h1><br>
-            <table class="table center">
-                <tr>
-                    <th>ID#</th>
-                    <th>Action</th>
-                </tr>
-                    <c:forEach var="order" items="${orders}">
-                        <tr>
-                            <td>
-                                <c:out value="${order.id}" />
-                            </td>
-                            <td>
-                                <a class="btn btn-outline-dark" href="${pageContext.request.contextPath}/user/order/view?order_id=${order.id}">View</a>
-                            </td>
-                        </tr>
-                    </c:forEach>
-            </table>
-        </div>
-    </div>
+<div class="container py-5">
+    <header class="text-center text-white py-5">
+        <h1 class="display-2 font-weight mb-4">Hello, ${user_name}!</h1><br><br><br><br>
+    </header>
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
