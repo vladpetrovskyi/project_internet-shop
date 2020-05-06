@@ -36,9 +36,6 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/products/allAvailable">Catalog<span
                         class="sr-only">(current)</span></a>
             </li>
-            <%--            <li class="nav-item active">--%>
-            <%--                <a class="nav-link" href="${pageContext.request.contextPath}/user">My profile</a>--%>
-            <%--            </li>--%>
             <li class="nav-item active">
                 <a class="nav-link" href="${pageContext.request.contextPath}/user/orders">My orders</a>
             </li>
