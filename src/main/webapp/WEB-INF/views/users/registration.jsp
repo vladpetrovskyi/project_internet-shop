@@ -57,8 +57,6 @@
         <div class="invalid-feedback">
             Please create password.
         </div>
-        <%--        <div class="registrationFormAlert" id="divCheckPasswordMatch">--%>
-        <%--        </div>--%>
     </div>
     <div class="container" style="text-align: center">
         <button type="submit" class="btn btn-dark">Register</button>
@@ -86,20 +84,6 @@
             });
         }, false);
     })();
-
-    // function checkPasswordMatch() {
-    //     var password = $("#password").val();
-    //     var confirmPassword = $("#password_repeat").val();
-    //
-    //     if (password != confirmPassword)
-    //         $("#divCheckPasswordMatch").html("Passwords do not match!");
-    //     else
-    //         $("#divCheckPasswordMatch").html("Passwords match.");
-    // }
-    //
-    // $(document).ready(function () {
-    //     $("#txtNewPassword, #txtConfirmPassword").keyup(checkPasswordMatch);
-    // });
 </script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

@@ -49,7 +49,6 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="${pageContext.request.contextPath}/user/cart">View</a>
-                    <%--<a class="dropdown-item" href="${pageContext.request.contextPath}/completeOrder">Checkout</a>--%>
                 </div>
             </li>
         </ul>

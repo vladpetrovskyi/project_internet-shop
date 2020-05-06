@@ -20,11 +20,6 @@
     }
 </style>
 <body class="text-center bg-light text-dark">
-<%--<div class="py-md-1" style="text-align: center;">--%>
-<%--    <h1>Welcome to the homepage!</h1>--%>
-<%--    <h5><em>Please choose from one of the next categories:</em></h5>--%>
-<%--</div>--%>
-<%--<div class="text-center "></div>--%>
 <div class="text-center">
     
 </div>
@@ -40,9 +35,6 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/products/allFromDb">Catalog<span
                         class="sr-only">(current)</span></a>
             </li>
-<%--            <li class="nav-item active">--%>
-<%--                <a class="nav-link" href="${pageContext.request.contextPath}/admin">Your homepage</a>--%>
-<%--            </li>--%>
             <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

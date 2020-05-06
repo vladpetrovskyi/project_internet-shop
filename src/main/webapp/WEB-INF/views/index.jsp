@@ -20,11 +20,6 @@
     }
 </style>
 <body class="text-center bg-light text-dark">
-<%--<div class="py-md-1" style="text-align: center;">--%>
-<%--    <h1>Welcome to the homepage!</h1>--%>
-<%--    <h5><em>Please choose from one of the next categories:</em></h5>--%>
-<%--</div>--%>
-<%--<div class="text-center "></div>--%>
 <div class="text-center">
     
 </div>
@@ -54,14 +49,7 @@
     <header class="text-center text-white py-5">
         <h1 class="display-2 font-weight mb-4">Welcome to Vilka!</h1>
         <p class="lead mb-5"><span style="font-size: 150%;">Internet-shop, where you can buy only best-quality products.</span></p>
-        <%--        <p class="font-italic">Snippet By <a href="https://bootstrapious.com" class="text-white">--%>
-        <%--            <u>Bootstrapious</u></a>--%>
-        <%--        </p>--%>
     </header>
-<%--    <div class="text-white">--%>
-<%--        <p class="lead text-center">Are you a new user? <a href="${pageContext.request.contextPath}/registration" class="text-white"><u>Sign up!</u></a><br>--%>
-<%--        Already an existing user? <a href="${pageContext.request.contextPath}/login" class="text-white"><u>Sign in!</u></a></p>--%>
-<%--    </div>--%>
     <footer class="mx-auto text-white text-center">
             <p class="lead">Are you a new user? <a href="${pageContext.request.contextPath}/registration" class="text-white"><u>Sign up!</u></a><br>
                 Already an existing user? <a href="${pageContext.request.contextPath}/login" class="text-white"><u>Sign in!</u></a></p>

@@ -19,7 +19,6 @@
         <div class="form-group px-md-5">
             <label for="login">Login</label>
             <input type="text" class="form-control" id="login" aria-describedby="loginHelp" name="login" required>
-            <%--            <small id="loginHelp" class="form-text text-muted">We'll never share your data with anyone else.</small>--%>
             <div class="invalid-feedback">
                 This field is mandatory!
             </div>
@@ -27,7 +26,6 @@
         <div class="form-group px-md-5">
             <label for="password">Password</label>
             <input type="password" class="form-control" id="password" aria-describedby="passHelp" name="pass" required>
-            <%--            <small id="passHelp" class="form-text text-muted">Your password must contain 8-20 characters.</small>--%>
             <div class="invalid-feedback">
                 This field is mandatory!
             </div>
