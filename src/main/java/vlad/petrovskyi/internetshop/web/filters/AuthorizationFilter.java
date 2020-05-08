@@ -23,7 +23,8 @@ public class AuthorizationFilter implements Filter {
 
     private static final String USER_ID = "user_id";
     private static final Injector INJECTOR = Injector.getInstance("vlad.petrovskyi.internetshop");
-    private static final Logger LOGGER = LogManager.getLogger(vlad.petrovskyi.internetshop.web.filters.AuthorizationFilter.class);
+    private static final Logger LOGGER = LogManager
+            .getLogger(vlad.petrovskyi.internetshop.web.filters.AuthorizationFilter.class);
     private final UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
     private final Map<String, Set<Role.RoleName>> protectedUrls = new HashMap<>();
 

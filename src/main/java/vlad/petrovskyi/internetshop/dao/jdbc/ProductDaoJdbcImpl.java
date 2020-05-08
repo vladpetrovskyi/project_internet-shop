@@ -17,7 +17,8 @@ import vlad.petrovskyi.internetshop.util.ConnectionUtil;
 
 @Dao
 public class ProductDaoJdbcImpl implements ProductDao {
-    private static final Logger LOGGER = LogManager.getLogger(vlad.petrovskyi.internetshop.dao.jdbc.ProductDaoJdbcImpl.class);
+    private static final Logger LOGGER =
+            LogManager.getLogger(vlad.petrovskyi.internetshop.dao.jdbc.ProductDaoJdbcImpl.class);
 
     @Override
     public Product create(Product element) {
