@@ -27,7 +27,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
             PreparedStatement statement = connection.prepareStatement(request);
             statement.setString(1, element.getName());
             statement.setBigDecimal(2, element.getPrice());
-            element.setId(Integer.toUnsignedLong(statement.executeUpdate()));
+            statement.executeUpdate();
+            element.setId(statement.getGeneratedKeys().getLong("product_id"));
             LOGGER.info("New product has been added");
             return element;
         } catch (SQLException e) {
