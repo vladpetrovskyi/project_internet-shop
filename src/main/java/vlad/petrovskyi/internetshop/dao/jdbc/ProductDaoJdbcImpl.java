@@ -5,35 +5,40 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import vlad.petrovskyi.internetshop.dao.ProductDao;
+import vlad.petrovskyi.internetshop.exceptions.DataProcessingException;
 import vlad.petrovskyi.internetshop.lib.Dao;
 import vlad.petrovskyi.internetshop.model.Product;
 import vlad.petrovskyi.internetshop.util.ConnectionUtil;
 
 @Dao
 public class ProductDaoJdbcImpl implements ProductDao {
-    private static final Logger LOGGER =
-            LogManager.getLogger(vlad.petrovskyi.internetshop.dao.jdbc.ProductDaoJdbcImpl.class);
+    private static final Logger LOGGER = LogManager.getLogger(ProductDaoJdbcImpl.class);
 
     @Override
     public Product create(Product element) {
         String request = "INSERT INTO products (name, price) VALUES (?, ?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(request);
+            PreparedStatement statement = connection
+                    .prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, element.getName());
             statement.setBigDecimal(2, element.getPrice());
             statement.executeUpdate();
-            element.setId(statement.getGeneratedKeys().getLong("product_id"));
+            ResultSet rs = statement.getGeneratedKeys();
+            if (rs.next()) {
+                element.setId(rs.getLong(1));
+            }
             LOGGER.info("New product has been added");
             return element;
         } catch (SQLException e) {
             LOGGER.warn("Could not add new product into DB", e);
-            throw new RuntimeException("Could not add new product into DB", e);
+            throw new DataProcessingException("Could not add new product into DB");
         }
     }
 
@@ -55,7 +60,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             return Optional.ofNullable(product);
         } catch (SQLException e) {
             LOGGER.warn("Could not find product with ID#" + id + " in DB", e);
-            throw new RuntimeException("Could not find product with ID#" + id + " in DB", e);
+            throw new DataProcessingException("Could not find product with ID#" + id + " in DB");
         }
     }
 
@@ -80,7 +85,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             return productList;
         } catch (SQLException e) {
             LOGGER.warn("Could not create list of products from DB.", e);
-            throw new RuntimeException("Could not create list of products from DB.", e);
+            throw new DataProcessingException("Could not create list of products from DB.");
         }
     }
 
@@ -98,23 +103,22 @@ public class ProductDaoJdbcImpl implements ProductDao {
         } catch (SQLException ex) {
             LOGGER.warn("Could not update a product with ID#"
                     + element.getId() + " in DB.", ex);
-            throw new RuntimeException("Could not update a product with ID#"
-                    + element.getId() + " in DB.", ex);
+            throw new DataProcessingException("Could not update a product with ID#"
+                    + element.getId() + " in DB.");
         }
     }
 
     @Override
     public boolean delete(Long id) {
         String request = "DELETE FROM products WHERE product_id = " + id;
-
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(request);
-            statement.executeUpdate();
+            int result = statement.executeUpdate();
             LOGGER.info("Product with ID#" + id + " has been deleted.");
-            return true;
+            return result > 0;
         } catch (SQLException e) {
             LOGGER.warn("Could not find product with ID#" + id + " in DB", e);
-            throw new RuntimeException("Could not find product with ID#" + id + " in DB", e);
+            throw new DataProcessingException("Could not find product with ID#" + id + " in DB");
         }
     }
 }

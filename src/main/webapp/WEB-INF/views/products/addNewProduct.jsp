@@ -19,7 +19,7 @@
     <div class="mx-auto" style="width: 400px;">
         <div class="form-group px-md-5">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" name="name" required>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name of new product" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -29,7 +29,7 @@
         </div>
         <div class="form-group px-md-5">
             <label for="price">Price</label>
-            <input type="text" class="form-control" id="price" name="price" required>
+            <input type="text" class="form-control" id="price" name="price" placeholder="25.95$" required>
             <div class="invalid-feedback">
                 Please add price.
             </div>

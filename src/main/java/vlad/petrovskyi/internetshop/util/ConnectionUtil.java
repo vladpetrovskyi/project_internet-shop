@@ -9,8 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 public class ConnectionUtil {
 
-    private static final Logger LOGGER =
-            LogManager.getLogger(vlad.petrovskyi.internetshop.util.ConnectionUtil.class);
+    private static final Logger LOGGER = LogManager.getLogger(ConnectionUtil.class);
 
     static {
         try {
