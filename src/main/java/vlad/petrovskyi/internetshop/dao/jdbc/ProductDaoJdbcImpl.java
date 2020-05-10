@@ -1,6 +1,5 @@
 package vlad.petrovskyi.internetshop.dao.jdbc;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,9 +23,9 @@ public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Product create(Product element) {
         String request = "INSERT INTO products (name, price) VALUES (?, ?)";
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection
-                    .prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
+        try (Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement statement = connection
+                        .prepareStatement(request, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, element.getName());
             statement.setBigDecimal(2, element.getPrice());
             statement.executeUpdate();
@@ -46,15 +45,12 @@ public class ProductDaoJdbcImpl implements ProductDao {
     public Optional<Product> get(Long id) {
         String request = "SELECT * FROM products WHERE product_id = " + id;
 
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(request);
+        try (Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(request)) {
             ResultSet resultSet = statement.executeQuery();
             Product product = null;
             while (resultSet.next()) {
-                String productName = resultSet.getString("name");
-                BigDecimal productPrice = resultSet.getBigDecimal("price");
-                product = new Product(productName, productPrice);
-                product.setId(id);
+                product = getProductFromResultSet(resultSet);
             }
             LOGGER.info("Product with ID#" + id + " has been found.");
             return Optional.ofNullable(product);
@@ -69,17 +65,11 @@ public class ProductDaoJdbcImpl implements ProductDao {
         List<Product> productList = new ArrayList<>();
         String request = "SELECT * FROM products";
 
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(request);
+        try (Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(request)) {
             ResultSet resultSet = statement.executeQuery();
-            Product product;
             while (resultSet.next()) {
-                Long productId = resultSet.getLong("product_id");
-                String productName = resultSet.getString("name");
-                BigDecimal productPrice = resultSet.getBigDecimal("price");
-                product = new Product(productName, productPrice);
-                product.setId(productId);
-                productList.add(product);
+                productList.add(getProductFromResultSet(resultSet));
             }
             LOGGER.info("List of all products from DB is created.");
             return productList;
@@ -92,8 +82,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Product update(Product element) {
         String request = "UPDATE products SET name = ?, price = ? WHERE product_id = ?";
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(request);
+        try (Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(request)) {
             statement.setString(1, element.getName());
             statement.setBigDecimal(2, element.getPrice());
             statement.setLong(3, element.getId());
@@ -111,8 +101,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public boolean delete(Long id) {
         String request = "DELETE FROM products WHERE product_id = " + id;
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(request);
+        try (Connection connection = ConnectionUtil.getConnection();
+                 PreparedStatement statement = connection.prepareStatement(request)) {
             int result = statement.executeUpdate();
             LOGGER.info("Product with ID#" + id + " has been deleted.");
             return result > 0;
@@ -120,5 +110,12 @@ public class ProductDaoJdbcImpl implements ProductDao {
             LOGGER.warn("Could not find product with ID#" + id + " in DB", e);
             throw new DataProcessingException("Could not find product with ID#" + id + " in DB");
         }
+    }
+
+    private Product getProductFromResultSet(ResultSet rs) throws SQLException {
+        Product product = new Product(rs.getString("name"),
+                rs.getBigDecimal("price"));
+        product.setId(rs.getLong("product_id"));
+        return product;
     }
 }
