@@ -8,8 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import vlad.petrovskyi.internetshop.dao.ProductDao;
 import vlad.petrovskyi.internetshop.exceptions.DataProcessingException;
 import vlad.petrovskyi.internetshop.lib.Dao;
@@ -18,7 +16,6 @@ import vlad.petrovskyi.internetshop.util.ConnectionUtil;
 
 @Dao
 public class ProductDaoJdbcImpl implements ProductDao {
-    private static final Logger LOGGER = LogManager.getLogger(ProductDaoJdbcImpl.class);
 
     @Override
     public Product create(Product element) {
@@ -33,10 +30,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
             if (rs.next()) {
                 element.setId(rs.getLong(1));
             }
-            LOGGER.info("New product has been added");
             return element;
         } catch (SQLException e) {
-            LOGGER.warn("Could not add new product into DB", e);
             throw new DataProcessingException("Could not add new product into DB");
         }
     }
@@ -52,10 +47,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
             while (resultSet.next()) {
                 product = getProductFromResultSet(resultSet);
             }
-            LOGGER.info("Product with ID#" + id + " has been found.");
             return Optional.ofNullable(product);
         } catch (SQLException e) {
-            LOGGER.warn("Could not find product with ID#" + id + " in DB", e);
             throw new DataProcessingException("Could not find product with ID#" + id + " in DB");
         }
     }
@@ -71,10 +64,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
             while (resultSet.next()) {
                 productList.add(getProductFromResultSet(resultSet));
             }
-            LOGGER.info("List of all products from DB is created.");
             return productList;
         } catch (SQLException e) {
-            LOGGER.warn("Could not create list of products from DB.", e);
             throw new DataProcessingException("Could not create list of products from DB.");
         }
     }
@@ -88,11 +79,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.setBigDecimal(2, element.getPrice());
             statement.setLong(3, element.getId());
             statement.executeUpdate();
-            LOGGER.info("An element with ID#" + element.getId() + " is updated.");
             return element;
         } catch (SQLException ex) {
-            LOGGER.warn("Could not update a product with ID#"
-                    + element.getId() + " in DB.", ex);
             throw new DataProcessingException("Could not update a product with ID#"
                     + element.getId() + " in DB.");
         }
@@ -104,10 +92,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
         try (Connection connection = ConnectionUtil.getConnection();
                  PreparedStatement statement = connection.prepareStatement(request)) {
             int result = statement.executeUpdate();
-            LOGGER.info("Product with ID#" + id + " has been deleted.");
             return result > 0;
         } catch (SQLException e) {
-            LOGGER.warn("Could not find product with ID#" + id + " in DB", e);
             throw new DataProcessingException("Could not find product with ID#" + id + " in DB");
         }
     }
