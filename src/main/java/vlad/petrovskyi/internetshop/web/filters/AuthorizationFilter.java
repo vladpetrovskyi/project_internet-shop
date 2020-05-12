@@ -12,7 +12,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import vlad.petrovskyi.internetshop.lib.Injector;
 import vlad.petrovskyi.internetshop.model.Role;
 import vlad.petrovskyi.internetshop.model.User;
@@ -22,7 +23,7 @@ public class AuthorizationFilter implements Filter {
 
     private static final String USER_ID = "user_id";
     private static final Injector INJECTOR = Injector.getInstance("vlad.petrovskyi.internetshop");
-    private static final Logger LOGGER = Logger.getLogger(AuthorizationFilter.class);
+    private static final Logger LOGGER = LogManager.getLogger(AuthorizationFilter.class);
     private final UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
     private final Map<String, Set<Role.RoleName>> protectedUrls = new HashMap<>();
 
