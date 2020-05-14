@@ -128,7 +128,7 @@ public class UserDaoJdbcImpl implements UserDao {
                         connection.prepareStatement(requestToDeleteFromUsers)) {
             statement.setLong(1, id);
             statement2.setLong(1, id);
-            return statement.executeUpdate() > 0 && statement2.executeUpdate() > 0;
+            return statement.executeUpdate() > 0 & statement2.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new DataProcessingException("Could not find user with ID#" + id + " in DB.", e);
         }
