@@ -20,12 +20,14 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public Order create(Order element) {
-        String request = "INSERT INTO orders (user_id) VALUES (?)";
-        String request2 = "INSERT INTO orders_products VALUES (?, ?)";
+        String requestForOrderInsertion = "INSERT INTO orders (user_id) VALUES (?)";
+        String requestForProductsAddition = "INSERT INTO orders_products VALUES (?, ?)";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement =
-                        connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
-                PreparedStatement statement2 = connection.prepareStatement(request2)) {
+                        connection.prepareStatement(requestForOrderInsertion,
+                                Statement.RETURN_GENERATED_KEYS);
+                PreparedStatement statement2 =
+                        connection.prepareStatement(requestForProductsAddition)) {
             statement.setLong(1, element.getUserId());
             statement.executeUpdate();
             ResultSet rs = statement.getGeneratedKeys();
