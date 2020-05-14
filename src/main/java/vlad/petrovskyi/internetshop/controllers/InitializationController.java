@@ -36,16 +36,21 @@ public class InitializationController extends HttpServlet {
         productService.create(
                 new Product("iPhone Xr", new BigDecimal("699")));
 
-        User admin = userService.create(new User("Vlad Petrovskyi", "admin", "admin"));
+        User admin = new User("Vlad Petrovskyi", "admin", "admin");
         admin.setRoles(Set.of(Role.of("ADMIN")));
-        User michael = userService.create(new User("Michael Weber", "mich234", "13243546"));
+        userService.create(admin);
+        User michael = new User("Michael Weber", "mich234", "13243546");
         michael.setRoles(Set.of(Role.of("USER")));
-        User anton = userService.create(new User("Anton Kurochkin", "antoine2233", "1111"));
+        michael = userService.create(michael);
+        User anton = new User("Anton Kurochkin", "antoine2233", "1111");
         anton.setRoles(Set.of(Role.of("USER")));
-        User eugene = userService.create(new User("Rob Whilson", "robbi", "123454321"));
+        anton = userService.create(anton);
+        User eugene = new User("Rob Whilson", "robbi", "123454321");
         eugene.setRoles(Set.of(Role.of("USER")));
-        User john = userService.create(new User("John Michael", "j_mm3", "44113468"));
+        eugene = userService.create(eugene);
+        User john = new User("John Michael", "j_mm3", "44113468");
         john.setRoles(Set.of(Role.of("USER")));
+        john = userService.create(john);
 
         shoppingCartService.create(michael.getId());
         shoppingCartService.create(anton.getId());
@@ -53,6 +58,8 @@ public class InitializationController extends HttpServlet {
         shoppingCartService.create(john.getId());
         resp.sendRedirect(req.getContextPath() + "/");
 
+        shoppingCartService.addProduct(shoppingCartService.getByUserId(michael.getId()),
+                productService.get(2L));
         orderService.completeOrder(
                 shoppingCartService.getByUserId(michael.getId()).getProducts(), michael);
     }
