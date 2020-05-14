@@ -1,5 +1,6 @@
 package vlad.petrovskyi.internetshop.model;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -14,6 +15,7 @@ public class User {
         this.name = name;
         this.login = login;
         this.password = password;
+        this.roles = new HashSet<>();
     }
 
     public Long getId() {
@@ -57,14 +59,15 @@ public class User {
             return false;
         }
         User user = (User) o;
-        return Objects.equals(name, user.name)
+        return Objects.equals(id, user.id)
+                && Objects.equals(name, user.name)
                 && Objects.equals(login, user.login)
                 && Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, login, password);
+        return Objects.hash(id, name, login, password);
     }
 
     public Set<Role> getRoles() {

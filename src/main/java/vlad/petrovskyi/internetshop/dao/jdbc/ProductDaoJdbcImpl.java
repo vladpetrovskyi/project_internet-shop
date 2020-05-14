@@ -32,41 +32,35 @@ public class ProductDaoJdbcImpl implements ProductDao {
             }
             return element;
         } catch (SQLException e) {
-            throw new DataProcessingException("Could not add new product into DB");
+            throw new DataProcessingException("Could not add new product into DB.", e);
         }
     }
 
     @Override
     public Optional<Product> get(Long id) {
-        String request = "SELECT * FROM products WHERE product_id = " + id;
+        String request = "SELECT * FROM products WHERE product_id = ?";
 
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(request)) {
+            statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
-            Product product = null;
-            while (resultSet.next()) {
-                product = getProductFromResultSet(resultSet);
-            }
-            return Optional.ofNullable(product);
+            return getProductFromResultSet(resultSet).stream().findFirst();
         } catch (SQLException e) {
-            throw new DataProcessingException("Could not find product with ID#" + id + " in DB");
+            throw new DataProcessingException("Could not find product with ID#"
+                    + id + " in DB.", e);
         }
     }
 
     @Override
     public List<Product> getAll() {
-        List<Product> productList = new ArrayList<>();
         String request = "SELECT * FROM products";
 
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(request)) {
             ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                productList.add(getProductFromResultSet(resultSet));
-            }
-            return productList;
+            return getProductFromResultSet(resultSet);
         } catch (SQLException e) {
-            throw new DataProcessingException("Could not create list of products from DB.");
+            throw new DataProcessingException("Could not create list of products from DB.", e);
         }
     }
 
@@ -80,28 +74,34 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.setLong(3, element.getId());
             statement.executeUpdate();
             return element;
-        } catch (SQLException ex) {
+        } catch (SQLException e) {
             throw new DataProcessingException("Could not update a product with ID#"
-                    + element.getId() + " in DB.");
+                    + element.getId() + " in DB.", e);
         }
     }
 
     @Override
     public boolean delete(Long id) {
-        String request = "DELETE FROM products WHERE product_id = " + id;
+        String request = "DELETE FROM products WHERE product_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                  PreparedStatement statement = connection.prepareStatement(request)) {
+            statement.setLong(1, id);
             int result = statement.executeUpdate();
             return result > 0;
         } catch (SQLException e) {
-            throw new DataProcessingException("Could not find product with ID#" + id + " in DB");
+            throw new DataProcessingException("Could not find product with ID#"
+                    + id + " in DB.", e);
         }
     }
 
-    private Product getProductFromResultSet(ResultSet rs) throws SQLException {
-        Product product = new Product(rs.getString("name"),
-                rs.getBigDecimal("price"));
-        product.setId(rs.getLong("product_id"));
-        return product;
+    private List<Product> getProductFromResultSet(ResultSet rs) throws SQLException {
+        List<Product> productList = new ArrayList<>();
+        while (rs.next()) {
+            Product product = new Product(rs.getString("name"),
+                    rs.getBigDecimal("price"));
+            product.setId(rs.getLong("product_id"));
+            productList.add(product);
+        }
+        return productList;
     }
 }

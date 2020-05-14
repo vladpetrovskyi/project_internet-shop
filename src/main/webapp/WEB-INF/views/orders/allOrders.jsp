@@ -63,7 +63,6 @@
                 <tr>
                     <th>ID#</th>
                     <th>User</th>
-                    <th>Name</th>
                     <th>Action</th>
                 </tr>
                 <c:forEach var="order" items="${orders}">
@@ -72,10 +71,7 @@
                             <c:out value="${order.id}" />
                         </td>
                         <td>
-                            <c:out value="${order.user.id}" />
-                        </td>
-                        <td>
-                            <c:out value="${order.user.name}" />
+                            <c:out value="${order.userId}" />
                         </td>
                         <td>
                             <a class="btn btn-outline-dark" href="${pageContext.request.contextPath}/user/order/view?order_id=${order.id}">View</a>
