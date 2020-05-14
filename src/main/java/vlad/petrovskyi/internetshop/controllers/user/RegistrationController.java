@@ -34,10 +34,11 @@ public class RegistrationController extends HttpServlet {
         String nameSurname = req.getParameter("name_Surname");
 
         if (pass.equals(passRepeat)) {
-            User user = userService.create(new User(nameSurname, login, pass));
+            User user = new User(nameSurname, login, pass);
+            user.setRoles(Set.of(Role.of("USER")));
+            userService.create(user);
             Long id = user.getId();
             shoppingCartService.create(id);
-            user.setRoles(Set.of(Role.of("USER")));
             resp.sendRedirect(req.getContextPath() + "/login");
         } else {
             req.setAttribute("message", "Passwords do not match!");

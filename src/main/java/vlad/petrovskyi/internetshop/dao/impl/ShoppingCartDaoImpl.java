@@ -5,10 +5,8 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 import vlad.petrovskyi.internetshop.dao.ShoppingCartDao;
 import vlad.petrovskyi.internetshop.db.Storage;
-import vlad.petrovskyi.internetshop.lib.Dao;
 import vlad.petrovskyi.internetshop.model.ShoppingCart;
 
-@Dao
 public class ShoppingCartDaoImpl implements ShoppingCartDao {
     @Override
     public ShoppingCart create(ShoppingCart shoppingCart) {

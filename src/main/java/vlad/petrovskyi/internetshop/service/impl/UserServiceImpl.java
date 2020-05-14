@@ -2,9 +2,11 @@ package vlad.petrovskyi.internetshop.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import vlad.petrovskyi.internetshop.dao.ShoppingCartDao;
 import vlad.petrovskyi.internetshop.dao.UserDao;
 import vlad.petrovskyi.internetshop.lib.Inject;
 import vlad.petrovskyi.internetshop.lib.Service;
+import vlad.petrovskyi.internetshop.model.ShoppingCart;
 import vlad.petrovskyi.internetshop.model.User;
 import vlad.petrovskyi.internetshop.service.UserService;
 
@@ -13,6 +15,9 @@ public class UserServiceImpl implements UserService {
 
     @Inject
     private UserDao userDao;
+
+    @Inject
+    private ShoppingCartDao shoppingCartDao;
 
     @Override
     public User create(User user) {
@@ -41,6 +46,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean delete(Long id) {
+        shoppingCartDao.delete(
+                shoppingCartDao.getAll()
+                        .stream()
+                        .filter(c -> c.getUserId().equals(id))
+                        .map(ShoppingCart::getId)
+                        .findFirst()
+                        .get());
         return userDao.delete(id);
     }
 }
