@@ -9,6 +9,7 @@ import vlad.petrovskyi.internetshop.lib.Service;
 import vlad.petrovskyi.internetshop.model.ShoppingCart;
 import vlad.petrovskyi.internetshop.model.User;
 import vlad.petrovskyi.internetshop.service.UserService;
+import vlad.petrovskyi.internetshop.util.HashUtil;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -21,6 +22,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(User user) {
+        byte[] salt = HashUtil.getSalt();
+        user.setPassword(HashUtil.hashPassword(user.getPassword(), salt));
+        user.setSalt(salt);
         return userDao.create(user);
     }
 

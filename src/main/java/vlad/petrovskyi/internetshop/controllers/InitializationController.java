@@ -57,10 +57,5 @@ public class InitializationController extends HttpServlet {
         shoppingCartService.create(eugene.getId());
         shoppingCartService.create(john.getId());
         resp.sendRedirect(req.getContextPath() + "/");
-
-        shoppingCartService.addProduct(shoppingCartService.getByUserId(michael.getId()),
-                productService.get(2L));
-        orderService.completeOrder(
-                shoppingCartService.getByUserId(michael.getId()).getProducts(), michael);
     }
 }

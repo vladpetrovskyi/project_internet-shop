@@ -35,7 +35,8 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public User create(User element) {
-        String createUserRequest = "INSERT INTO users (name, login, password) VALUES (?, ?, ?)";
+        String createUserRequest = "INSERT INTO users (name, login, password, salt) "
+                + "VALUES (?, ?, ?, ?)";
         String findRoleRequest = "SELECT role_id FROM roles WHERE role_name = ?";
         String connectUserAndRoleRequest = "INSERT INTO users_roles (user_id, role_id) "
                 + "VALUES (?, ?)";
@@ -49,6 +50,7 @@ public class UserDaoJdbcImpl implements UserDao {
             insertUser.setString(1, element.getName());
             insertUser.setString(2, element.getLogin());
             insertUser.setString(3, element.getPassword());
+            insertUser.setBytes(4, element.getSalt());
             insertUser.executeUpdate();
 
             ResultSet rs = insertUser.getGeneratedKeys();
@@ -102,13 +104,15 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public User update(User element) {
-        String request = "UPDATE users SET name = ?, login = ?, password = ? WHERE user_id = ?";
+        String request = "UPDATE users SET name = ?, login = ?, password = ?, salt = ? "
+                + "WHERE user_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(request)) {
             statement.setString(1, element.getName());
             statement.setString(2, element.getLogin());
             statement.setString(3, element.getPassword());
-            statement.setLong(4, element.getId());
+            statement.setBytes(3, element.getSalt());
+            statement.setLong(5, element.getId());
             statement.executeUpdate();
             return element;
         } catch (SQLException e) {
@@ -150,6 +154,7 @@ public class UserDaoJdbcImpl implements UserDao {
             Long userId = rs.getLong("user_id");
             user.setId(userId);
             user.getRoles().add(Role.of(rs.getString("role_name")));
+            user.setSalt(rs.getBytes("salt"));
             if (userList.contains(user)) {
                 userList.get(userList.indexOf(user))
                         .getRoles()
