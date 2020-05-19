@@ -9,6 +9,7 @@ public class User {
     private String name;
     private String login;
     private String password;
+    private byte[] salt;
     private Set<Role> roles;
 
     public User(String name, String login, String password) {
@@ -16,6 +17,14 @@ public class User {
         this.login = login;
         this.password = password;
         this.roles = new HashSet<>();
+    }
+
+    public byte[] getSalt() {
+        return salt;
+    }
+
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
     }
 
     public Long getId() {

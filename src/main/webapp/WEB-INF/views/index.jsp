@@ -54,6 +54,7 @@
             <p class="lead">Are you a new user? <a href="${pageContext.request.contextPath}/registration" class="text-white"><u>Sign up!</u></a><br>
                 Already an existing user? <a href="${pageContext.request.contextPath}/login" class="text-white"><u>Sign in!</u></a></p>
     </footer>
+</div>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>

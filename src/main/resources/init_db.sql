@@ -84,3 +84,5 @@ CREATE TABLE `internet_shop`.`users_roles` (
                                                        ON UPDATE NO ACTION);
 INSERT INTO internet_shop.roles (role_name) VALUES ('ADMIN');
 INSERT INTO internet_shop.roles (role_name) VALUES ('USER');
+ALTER TABLE `internet_shop`.`users`
+    ADD COLUMN `salt` BINARY(16) NOT NULL AFTER `password`;
