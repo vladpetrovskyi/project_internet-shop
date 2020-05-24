@@ -35,10 +35,11 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/products/view">Catalog<span
                         class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/initialization">Initialize<span
-                        class="sr-only">(current)</span></a>
-            </li>
+<%--            USE FOR DATABASE DATA INITIALIZATION--%>
+<%--            <li class="nav-item">--%>
+<%--                <a class="nav-link" href="${pageContext.request.contextPath}/initialization">Initialize<span--%>
+<%--                        class="sr-only">(current)</span></a>--%>
+<%--            </li>--%>
         </ul>
     </div>
     <span class="navbar-text float-right">

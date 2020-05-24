@@ -24,11 +24,9 @@ public class InitializationController extends HttpServlet {
             (UserService) injector.getInstance(UserService.class);
     final ShoppingCartService shoppingCartService =
             (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
-    final OrderService orderService =
-            (OrderService) injector.getInstance(OrderService.class);
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+            throws IOException {
         productService.create(
                 new Product("iPhone 11", new BigDecimal("999")));
         productService.create(

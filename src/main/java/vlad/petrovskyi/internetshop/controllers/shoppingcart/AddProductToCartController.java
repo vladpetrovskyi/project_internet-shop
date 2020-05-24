@@ -20,7 +20,7 @@ public class AddProductToCartController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+            throws IOException {
         shoppingCartService.addProduct(
                 shoppingCartService.getByUserId((Long) req.getSession().getAttribute(USER_ID)),
                 productService.get(Long.valueOf(req.getParameter("product_id"))));
