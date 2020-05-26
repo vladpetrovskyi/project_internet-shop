@@ -38,10 +38,10 @@ For users with an **ADMIN role only**:
 * Java 11
 * Maven 4.0.0
 * javax.servlet-api 3.1.0
-* jstl 1.2
-* log4j 1.2.17
-* maven-checkstyle-plugin
-* mysql-connector-java 8.0.18
+* JSTL 1.2
+* log4j2 2.13
+* maven-checkstyle-plugin 3.1.1
+* mysql-connector-java 8.0.20
 
 
 # <a name="developer-start"></a>For developer
