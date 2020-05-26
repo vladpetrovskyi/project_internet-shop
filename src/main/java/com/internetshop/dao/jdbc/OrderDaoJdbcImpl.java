@@ -129,15 +129,20 @@ public class OrderDaoJdbcImpl implements OrderDao {
         String request = "SELECT * FROM orders_products op JOIN products p "
                 + "ON p.product_id = op.product_id WHERE op.order_id = ?";
         List<Product> productList = new ArrayList<>();
+        ResultSet resultSet = null;
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(request)) {
             statement.setLong(1, id);
-            ResultSet resultSet = statement.executeQuery();
+            resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Product product = new Product(resultSet.getString("name"),
                         resultSet.getBigDecimal("price"));
                 product.setId(resultSet.getLong("product_id"));
                 productList.add(product);
+            }
+        } finally {
+            if (resultSet != null) {
+                resultSet.close();
             }
         }
         return productList;

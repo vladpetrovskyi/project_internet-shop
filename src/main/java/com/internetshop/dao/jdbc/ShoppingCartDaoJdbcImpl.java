@@ -133,12 +133,17 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
     private List<Product> getProductsFromCart(Long id) throws SQLException {
         List<Product> productList = new ArrayList<>();
         String request = "SELECT * FROM shopping_carts_products WHERE cart_id = ?";
+        ResultSet resultSet = null;
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(request)) {
             statement.setLong(1, id);
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                productDao.get(rs.getLong("product_id")).ifPresent(productList::add);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                productDao.get(resultSet.getLong("product_id")).ifPresent(productList::add);
+            }
+        } finally {
+            if (resultSet != null) {
+                resultSet.close();
             }
         }
         return productList;

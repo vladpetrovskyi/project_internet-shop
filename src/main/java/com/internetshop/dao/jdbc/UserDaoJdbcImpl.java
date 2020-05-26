@@ -37,16 +37,10 @@ public class UserDaoJdbcImpl implements UserDao {
     public User create(User element) {
         String createUserRequest = "INSERT INTO users (name, login, password, salt) "
                 + "VALUES (?, ?, ?, ?)";
-        String findRoleRequest = "SELECT role_id FROM roles WHERE role_name = ?";
-        String connectUserAndRoleRequest = "INSERT INTO users_roles (user_id, role_id) "
-                + "VALUES (?, ?)";
 
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement insertUser = connection
-                        .prepareStatement(createUserRequest, Statement.RETURN_GENERATED_KEYS);
-                PreparedStatement findRole = connection.prepareStatement(findRoleRequest);
-                PreparedStatement boundUserAndRole = connection
-                        .prepareStatement(connectUserAndRoleRequest)) {
+                        .prepareStatement(createUserRequest, Statement.RETURN_GENERATED_KEYS)) {
             insertUser.setString(1, element.getName());
             insertUser.setString(2, element.getLogin());
             insertUser.setString(3, element.getPassword());
@@ -57,16 +51,7 @@ public class UserDaoJdbcImpl implements UserDao {
             if (rs.next()) {
                 long userId = rs.getLong(1);
                 element.setId(userId);
-
-                for (Role role : element.getRoles()) {
-                    findRole.setString(1, role.getRoleName().name());
-                    ResultSet resultSet = findRole.executeQuery();
-                    while (resultSet.next()) {
-                        boundUserAndRole.setLong(1, userId);
-                        boundUserAndRole.setLong(2, resultSet.getLong("role_id"));
-                        boundUserAndRole.executeUpdate();
-                    }
-                }
+                roleSetter(connection, element);
             }
             return element;
         } catch (SQLException e) {
@@ -164,5 +149,29 @@ public class UserDaoJdbcImpl implements UserDao {
             }
         }
         return userList;
+    }
+
+    private void roleSetter(Connection connection, User element) throws SQLException {
+        String findRoleRequest = "SELECT role_id FROM roles WHERE role_name = ?";
+        String connectUserAndRoleRequest = "INSERT INTO users_roles (user_id, role_id) "
+                + "VALUES (?, ?)";
+        ResultSet resultSet = null;
+        try (PreparedStatement findRole = connection.prepareStatement(findRoleRequest);
+                    PreparedStatement boundUserAndRole =
+                            connection.prepareStatement(connectUserAndRoleRequest)) {
+            for (Role role : element.getRoles()) {
+                findRole.setString(1, role.getRoleName().name());
+                resultSet = findRole.executeQuery();
+                while (resultSet.next()) {
+                    boundUserAndRole.setLong(1, element.getId());
+                    boundUserAndRole.setLong(2, resultSet.getLong("role_id"));
+                    boundUserAndRole.executeUpdate();
+                }
+            }
+        } finally {
+            if (resultSet != null) {
+                resultSet.close();
+            }
+        }
     }
 }
