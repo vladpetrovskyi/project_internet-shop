@@ -35,11 +35,6 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/products/view">Catalog<span
                         class="sr-only">(current)</span></a>
             </li>
-<%--            USE FOR DATABASE DATA INITIALIZATION--%>
-<%--            <li class="nav-item">--%>
-<%--                <a class="nav-link" href="${pageContext.request.contextPath}/initialization">Initialize<span--%>
-<%--                        class="sr-only">(current)</span></a>--%>
-<%--            </li>--%>
         </ul>
     </div>
     <span class="navbar-text float-right">
@@ -49,7 +44,7 @@
 <div class="container py-5">
     <header class="text-center text-white py-5">
         <h1 class="display-2 font-weight mb-4">Welcome to Vilka!</h1>
-        <p class="lead mb-5"><span style="font-size: 150%;">Internet-shop, where you can buy only best-quality products.</span></p>
+        <p class="lead mb-5"><span style="font-size: 150%;">Internet shop where you can buy only best-quality products.</span></p>
     </header>
     <footer class="mx-auto text-white text-center">
             <p class="lead">Are you a new user? <a href="${pageContext.request.contextPath}/registration" class="text-white"><u>Sign up!</u></a><br>
