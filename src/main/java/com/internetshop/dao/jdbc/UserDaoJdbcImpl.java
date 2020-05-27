@@ -18,18 +18,20 @@ import java.util.Optional;
 @Dao
 public class UserDaoJdbcImpl implements UserDao {
 
+    private static final String ACTION_1 = "SELECT * FROM users JOIN users_roles "
+            + "ON users.user_id = users_roles.user_id JOIN roles "
+            + "ON users_roles.role_id = roles.role_id ";
+
     @Override
     public Optional<User> getByLogin(String login) {
-        String request = "SELECT * FROM users JOIN users_roles ON users.user_id = "
-                + "users_roles.user_id JOIN roles ON users_roles.role_id = roles.role_id "
-                + "WHERE users.login = ?";
+        String request = ACTION_1 + "WHERE users.login = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(request)) {
             statement.setString(1, login);
             return getUserExecution(statement);
         } catch (SQLException e) {
-            throw new DataProcessingException("Could not find user with login '"
-                    + login + "' in DB.", e);
+            throw new DataProcessingException("Could not find user in DB with login '"
+                    + login + "'.", e);
         }
     }
 
@@ -61,26 +63,21 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public Optional<User> get(Long id) {
-        String request = "SELECT * FROM users JOIN users_roles ON users.user_id = "
-                + "users_roles.user_id JOIN roles ON users_roles.role_id = roles.role_id "
-                + "WHERE users.user_id = ?";
+        String request = ACTION_1 + "WHERE users.user_id = ?";
 
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(request)) {
             statement.setLong(1, id);
             return getUserExecution(statement);
         } catch (SQLException e) {
-            throw new DataProcessingException("Could not find user with ID#" + id + " in DB.", e);
+            throw new DataProcessingException("Could not find user in DB with ID#" + id, e);
         }
     }
 
     @Override
     public List<User> getAll() {
-        String request = "SELECT * FROM users JOIN users_roles ON users.user_id = "
-                + "users_roles.user_id JOIN roles ON users_roles.role_id = roles.role_id";
-
         try (Connection connection = ConnectionUtil.getConnection();
-                PreparedStatement statement = connection.prepareStatement(request)) {
+                PreparedStatement statement = connection.prepareStatement(ACTION_1)) {
             return getUsersFromResultSet(statement.executeQuery());
         } catch (SQLException e) {
             throw new DataProcessingException("Could not create list of users from DB.", e);
@@ -101,8 +98,8 @@ public class UserDaoJdbcImpl implements UserDao {
             statement.executeUpdate();
             return element;
         } catch (SQLException e) {
-            throw new DataProcessingException("Could not update a user with ID#"
-                    + element.getId() + " in DB.", e);
+            throw new DataProcessingException("Could not update a user in DB with ID#"
+                    + element.getId(), e);
         }
     }
 
@@ -117,9 +114,11 @@ public class UserDaoJdbcImpl implements UserDao {
                         connection.prepareStatement(requestToDeleteFromUsers)) {
             statement.setLong(1, id);
             statement2.setLong(1, id);
-            return statement.executeUpdate() > 0 & statement2.executeUpdate() > 0;
+            int statement1Result = statement.executeUpdate();
+            int statement2Result = statement2.executeUpdate();
+            return (statement1Result > 0 && statement2Result > 0);
         } catch (SQLException e) {
-            throw new DataProcessingException("Could not find user with ID#" + id + " in DB.", e);
+            throw new DataProcessingException("Could not find user in DB with ID#" + id, e);
         }
     }
 

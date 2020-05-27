@@ -1,5 +1,6 @@
 package com.internetshop.util;
 
+import com.internetshop.exceptions.DbConnectionException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -11,13 +12,16 @@ public class ConnectionUtil {
 
     private static final Logger LOGGER = LogManager.getLogger(ConnectionUtil.class);
 
+    private ConnectionUtil() {
+    }
+
     static {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             LOGGER.info("DataBase driver is registered.");
         } catch (ClassNotFoundException e) {
             LOGGER.error("Could not find MySQL driver.", e);
-            throw new RuntimeException("Could not find MySQL driver.", e);
+            throw new DbConnectionException("Could not find MySQL driver.", e);
         }
     }
 
@@ -33,7 +37,7 @@ public class ConnectionUtil {
             return connection;
         } catch (SQLException ex) {
             LOGGER.error("Can't establish the connection to DB.", ex);
-            throw new RuntimeException("Can't establish the connection to DB.", ex);
+            throw new DbConnectionException("Can't establish the connection to DB.", ex);
         }
     }
 }

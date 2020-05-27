@@ -21,6 +21,7 @@ public class CompleteOrderController extends HttpServlet {
     private final UserService userService =
             (UserService) INJECTOR.getInstance(UserService.class);
 
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         Long userId = (Long) req.getSession().getAttribute(USER_ID);

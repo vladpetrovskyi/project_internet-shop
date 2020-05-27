@@ -55,6 +55,6 @@ public class AuthenticationFilter implements Filter {
 
     @Override
     public void destroy() {
-
+        //Do nothing because no action needed;
     }
 }

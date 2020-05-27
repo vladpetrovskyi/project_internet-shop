@@ -23,6 +23,7 @@ public class InitializationController extends HttpServlet {
     final ShoppingCartService shoppingCartService =
             (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
 
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
         productService.create(

@@ -106,8 +106,9 @@ public class OrderDaoJdbcImpl implements OrderDao {
                         connection.prepareStatement(requestForOrderDeletion)) {
             statementOrderProducts.setLong(1, id);
             statementOrder.setLong(1, id);
-            return statementOrderProducts.executeUpdate() > 0
-                    & statementOrder.executeUpdate() > 0;
+            int statement1 = statementOrderProducts.executeUpdate();
+            int statement2 = statementOrder.executeUpdate();
+            return (statement1 > 0 && statement2 > 0);
         } catch (SQLException ex) {
             throw new DataProcessingException("Cannot delete order from DB.", ex);
         }

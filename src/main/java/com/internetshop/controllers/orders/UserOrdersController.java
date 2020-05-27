@@ -16,6 +16,7 @@ public class UserOrdersController extends HttpServlet {
             (OrderService) INJECTOR.getInstance(OrderService.class);
     private final UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
 
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         req.setAttribute("orders", orderService.getUserOrders(

@@ -111,8 +111,9 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
                         connection.prepareStatement(deleteFromCartsRequest)) {
             cartsProductsStatement.setLong(1, id);
             cartsStatement.setLong(1, id);
-            return cartsProductsStatement.executeUpdate() > 0
-                    & cartsStatement.executeUpdate() > 0;
+            int statement1 = cartsProductsStatement.executeUpdate();
+            int statement2 = cartsStatement.executeUpdate();
+            return (statement1 > 0 && statement2 > 0);
         } catch (SQLException ex) {
             throw new DataProcessingException("Could not delete cart from DB.", ex);
         }

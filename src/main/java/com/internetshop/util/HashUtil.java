@@ -1,5 +1,7 @@
 package com.internetshop.util;
 
+import com.internetshop.exceptions.HashingException;
+
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
@@ -8,6 +10,9 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
 public class HashUtil {
+
+    private HashUtil() {
+    }
 
     public static byte[] getSalt() {
         SecureRandom random = new SecureRandom();
@@ -26,7 +31,7 @@ public class HashUtil {
                 hashedPassword.append(String.format("%02x", b));
             }
         } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
-            throw new RuntimeException("Could not hash password.", e);
+            throw new HashingException("Could not hash password.", e);
         }
         return hashedPassword.toString();
     }

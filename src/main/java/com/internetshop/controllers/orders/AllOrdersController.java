@@ -13,6 +13,7 @@ public class AllOrdersController extends HttpServlet {
     private final OrderService orderService =
             (OrderService) INJECTOR.getInstance(OrderService.class);
 
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         req.setAttribute("orders", orderService.getAll());

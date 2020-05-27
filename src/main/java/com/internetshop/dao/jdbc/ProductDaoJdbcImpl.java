@@ -46,8 +46,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             ResultSet resultSet = statement.executeQuery();
             return getProductFromResultSet(resultSet).stream().findFirst();
         } catch (SQLException e) {
-            throw new DataProcessingException("Could not find product with ID#"
-                    + id + " in DB.", e);
+            throw new DataProcessingException("Could not find product in DB with ID#" + id, e);
         }
     }
 
@@ -75,8 +74,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.executeUpdate();
             return element;
         } catch (SQLException e) {
-            throw new DataProcessingException("Could not update a product with ID#"
-                    + element.getId() + " in DB.", e);
+            throw new DataProcessingException("Could not update a product in DB with ID#"
+                    + element.getId(), e);
         }
     }
 
@@ -89,8 +88,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             int result = statement.executeUpdate();
             return result > 0;
         } catch (SQLException e) {
-            throw new DataProcessingException("Could not find product with ID#"
-                    + id + " in DB.", e);
+            throw new DataProcessingException("Could not find product in DB with ID#" + id, e);
         }
     }
 
