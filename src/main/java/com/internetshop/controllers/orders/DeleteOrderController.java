@@ -13,7 +13,7 @@ public class DeleteOrderController extends HttpServlet {
             (OrderService) INJECTOR.getInstance(OrderService.class);
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException {
+            throws IOException, NumberFormatException {
         orderService.delete(Long.parseLong(req.getParameter("order_id")));
         resp.sendRedirect(req.getContextPath() + "/orders/all");
     }
