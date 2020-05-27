@@ -20,8 +20,9 @@ public class ViewOrderController extends HttpServlet {
     private final UserService userService =
             (UserService) INJECTOR.getInstance(UserService.class);
 
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException, NumberFormatException {
+            throws ServletException, IOException {
         Order order = orderService.get(Long.parseLong(req.getParameter("order_id")));
         req.setAttribute("order", order);
         req.setAttribute("sum", orderService.sum(order.getProducts()));

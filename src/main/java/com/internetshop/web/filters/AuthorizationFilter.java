@@ -63,7 +63,7 @@ public class AuthorizationFilter implements Filter {
 
         Long userId = (Long) req.getSession().getAttribute(USER_ID);
         if (!isAuthorized(userService.get(userId), roleSet)) {
-            LOGGER.warn(String.format("Unauthorized try of access by user with ID#%s", userId));
+            LOGGER.warn("Unauthorized try of access by user with ID#" + userId);
             req.getRequestDispatcher("/WEB-INF/views/accessDenied.jsp").forward(req, resp);
             return;
         }
@@ -72,7 +72,6 @@ public class AuthorizationFilter implements Filter {
 
     @Override
     public void destroy() {
-        //Do nothing because no action needed;
     }
 
     private boolean isAuthorized(User user, Set<Role.RoleName> roles) {
