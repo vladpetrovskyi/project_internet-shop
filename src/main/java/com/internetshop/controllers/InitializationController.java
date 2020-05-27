@@ -35,7 +35,7 @@ public class InitializationController extends HttpServlet {
         User admin = new User("Administrator", "admin", "admin");
         admin.setRoles(Set.of(Role.of("ADMIN")));
         userService.create(admin);
-        User anton = new User("Anton Kurochkin", "antoine2233", "1111");
+        User anton = new User("User 1", "user1", "user1");
         anton.setRoles(Set.of(Role.of("USER")));
         anton = userService.create(anton);
         shoppingCartService.create(anton.getId());

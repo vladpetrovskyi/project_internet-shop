@@ -1,4 +1,4 @@
-# Internet shop
+# Online shop
 ![Header Image](src/main/resources/main_page.png)
 # Table of Contents
 [Project purpose](#purpose)<br>
@@ -13,19 +13,24 @@ It implements typical for an online store functions and has the login and regist
 
 
 # <a name="avvailable_functions"></a>Available Functions
-For **all** users: 
+For **all** users:
+ 
 * view menu of the store;
 * view items of the store;
 * registration;
 * log in;
 * log out.
-  
+
+<hr>
+
 For users with a **USER role only**: 
 * add products to user's shopping cart;
 * delete products from user's shopping cart;
-* view all user's orders;
+* view all current user's orders;
 * complete order;
-* view a list of selected items in user`s shopping cart.
+* view current user`s shopping cart.
+
+<hr>
 
 For users with an **ADMIN role only**:
 * add items to a catalog;
@@ -45,30 +50,54 @@ For users with an **ADMIN role only**:
 
 
 # <a name="developer-start"></a>For developer
-Open the project in your IDE.
+To run this project you need to have installed:
 
-Add it as maven project.
+* Java 11+
+* Tomcat
+* MySQL (Optional)
 
-Configure Tomcat:
-* add artifact
-* add sdk 11.0.3
+<hr>
 
-Add sdk 11.0.3 in project structure.
+This project is **MVC-based** and thus has:
 
-Use file /internet-shop_project/src/main/resources/init_db.sql to create schema and all the tables required by this app in MySQL database.
+* DAO layer (with two implementations: inner storage based on List and outer storage based on MySQL RDBMS); 
+* Service layer;
+* authentication and authorization filters; 
+* Servlets;
+* JSP pages.
 
-At /internet-shop_project/src/main/java/mate/academy/internetshop/factory/DaoAndServiceFactory class use username and password for your DB to create a Connection.
+<hr>
 
-Change a path in /jv-internet-shop/src/main/resources/log4j.properties. It has to reach your logFile.
+_Launch guide:_
 
-Run the project.
+1. Open the project in your IDE.
+2. Add it as maven project.
+3. Configure Tomcat:
+    * add an artifact;
+    * add SDK 11.0.3.
+4. Add SDK 11.0.3 in project structure.
+5. Change a path in **/internet-shop_project/src/main/resources/log4j2.xml** on line 7. It has to reach your logFile.
+6. Run the project.
+7. If you launch this project for the first time: 
+    * Run InjectDefaultUsersController by URL = .../initialization to create default users. By default, there are one user with the USER role (login = "user1", password = "user1") 
+and one with an ADMIN role (login = "admin", password = "admin")*.
 
-If you first time launch this project: 
- * Run InjectDefaultUsersController by URL = .../internet_shop_war_exploded/injectDefaultUsers to create default users.
+*Run injection **every time** you run your project if you use the inner storage, and only **on first run** if you use MySQL.
+<hr>
 
-By default, there are one user with the USER role (login = "User1", password = "1") 
-and one with an ADMIN role (login = "Admin1", password = "1"). 
+To work with MySQL you need to*:
 
+1. At /internet-shop_project/src/main/java/com/internetshop/util/ConnectionUtil class use username, password and URL for your DB to create a Connection.
+2. Use file /internet-shop_project/src/main/resources/init_db.sql to create a schema and all the tables required by this app in MySQL database.
+
+*_This project uses MySQL by default_
+
+<hr>
+
+To work with inner storage you need to:
+
+1. Remove @Dao annotations from DAOs in src/main/java/com/internetshop/dao/jdbc;
+2. Add @Dao annotations to DAOs in src/main/java/com/internetshop/dao/impl.
 
 # <a name="authors"></a>Authors
 [Vlad Petrovskyi](https://github.com/vladpetrovskyi)
