@@ -1,7 +1,6 @@
 package com.internetshop.util;
 
 import com.internetshop.exceptions.HashingException;
-
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
