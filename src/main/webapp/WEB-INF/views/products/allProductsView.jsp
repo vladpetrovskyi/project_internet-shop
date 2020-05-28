@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -36,10 +36,6 @@
         <ul class="navbar-nav">
             <li class="nav-item active">
                 <a class="nav-link" href="${pageContext.request.contextPath}/products/allAvailable">Catalog<span
-                        class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/initialization">Initialize<span
                         class="sr-only">(current)</span></a>
             </li>
         </ul>
