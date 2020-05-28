@@ -18,13 +18,13 @@ import java.util.Optional;
 @Dao
 public class UserDaoJdbcImpl implements UserDao {
 
-    private static final String ACTION_1 = "SELECT * FROM users JOIN users_roles "
+    private static final String SELECT_USER_BY_PARAMETER = "SELECT * FROM users JOIN users_roles "
             + "ON users.user_id = users_roles.user_id JOIN roles "
             + "ON users_roles.role_id = roles.role_id ";
 
     @Override
     public Optional<User> getByLogin(String login) {
-        String request = ACTION_1 + "WHERE users.login = ?";
+        String request = SELECT_USER_BY_PARAMETER + "WHERE users.login = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(request)) {
             statement.setString(1, login);
@@ -63,7 +63,7 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public Optional<User> get(Long id) {
-        String request = ACTION_1 + "WHERE users.user_id = ?";
+        String request = SELECT_USER_BY_PARAMETER + "WHERE users.user_id = ?";
 
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(request)) {
@@ -77,7 +77,8 @@ public class UserDaoJdbcImpl implements UserDao {
     @Override
     public List<User> getAll() {
         try (Connection connection = ConnectionUtil.getConnection();
-                PreparedStatement statement = connection.prepareStatement(ACTION_1)) {
+                PreparedStatement statement =
+                        connection.prepareStatement(SELECT_USER_BY_PARAMETER)) {
             return getUsersFromResultSet(statement.executeQuery());
         } catch (SQLException e) {
             throw new DataProcessingException("Could not create list of users from DB.", e);
