@@ -33,6 +33,11 @@ public class RegistrationController extends HttpServlet {
         String passRepeat = req.getParameter("pass_Repeat");
         String nameSurname = req.getParameter("name_Surname");
 
+        if (userService.getByLogin(login).isPresent()) {
+            req.setAttribute("message", "User with this login already exists!");
+            req.getRequestDispatcher("/WEB-INF/views/users/registration.jsp").forward(req, resp);
+        }
+
         if (pass.equals(passRepeat)) {
             User user = new User(nameSurname, login, pass);
             user.setRoles(Set.of(Role.of("USER")));

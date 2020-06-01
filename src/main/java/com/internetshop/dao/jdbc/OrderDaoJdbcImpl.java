@@ -60,8 +60,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public List<Order> getAll() {
-        String request = "SELECT * FROM orders JOIN orders_products op USING (order_id) "
-                + "JOIN products p USING (product_id)";
+        String request = "SELECT * FROM orders";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(request)) {
             return getOrders(statement.executeQuery());

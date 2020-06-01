@@ -15,7 +15,10 @@
     <h1>Registering as a new user</h1>
 </div>
 <div class="mx-auto text-danger py-md-1" style="width: 400px;"><h4 style="text-align: center;">
-    <strong>${message}</strong></h4></div>
+    <strong>${message}</strong>
+    <strong><div class="registrationFormAlert" id="divCheckPasswordMatch"></div></strong>
+</h4>
+</div>
 <form class="needs-validation" method="post" novalidate>
     <div class="mx-auto" style="width: 400px;">
         <div class="form-group px-md-5">
@@ -84,6 +87,19 @@
             });
         }, false);
     })();
+    function checkPasswordMatch() {
+        var password = $("#password").val();
+        var confirmPassword = $("#password_repeat").val();
+
+        if (password != confirmPassword)
+            $("#divCheckPasswordMatch").html("Passwords do not match!");
+        else
+            $("#divCheckPasswordMatch").html("");
+    }
+
+    $(document).ready(function () {
+        $("#password, #password_repeat").keyup(checkPasswordMatch);
+    });
 </script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
