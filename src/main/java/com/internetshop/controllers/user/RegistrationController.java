@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 public class RegistrationController extends HttpServlet {
 
     private static final Injector INJECTOR = Injector.getInstance("com.internetshop");
+    private static final String URL = "/WEB-INF/views/users/registration.jsp";
     private final UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
     private final ShoppingCartService shoppingCartService =
             (ShoppingCartService) INJECTOR.getInstance(ShoppingCartService.class);
@@ -22,7 +23,7 @@ public class RegistrationController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/users/registration.jsp").forward(req, resp);
+        req.getRequestDispatcher(URL).forward(req, resp);
     }
 
     @Override
@@ -35,7 +36,7 @@ public class RegistrationController extends HttpServlet {
 
         if (userService.getByLogin(login).isPresent()) {
             req.setAttribute("message", "User with this login already exists!");
-            req.getRequestDispatcher("/WEB-INF/views/users/registration.jsp").forward(req, resp);
+            req.getRequestDispatcher(URL).forward(req, resp);
         }
 
         if (pass.equals(passRepeat)) {
@@ -47,7 +48,7 @@ public class RegistrationController extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/login");
         } else {
             req.setAttribute("message", "Passwords do not match!");
-            req.getRequestDispatcher("/WEB-INF/views/users/registration.jsp").forward(req, resp);
+            req.getRequestDispatcher(URL).forward(req, resp);
         }
     }
 }
