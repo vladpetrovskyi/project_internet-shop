@@ -3,6 +3,7 @@ package com.internetshop.dao.jdbc;
 import com.internetshop.dao.UserDao;
 import com.internetshop.exceptions.DataProcessingException;
 import com.internetshop.lib.Dao;
+import com.internetshop.lib.Inject;
 import com.internetshop.model.Role;
 import com.internetshop.model.User;
 import com.internetshop.util.ConnectionUtil;
@@ -18,9 +19,10 @@ import java.util.Optional;
 @Dao
 public class UserDaoJdbcImpl implements UserDao {
 
+    @Inject
+
     private static final String SELECT_USER_BY_PARAMETER = "SELECT * FROM users JOIN users_roles "
-            + "ON users.user_id = users_roles.user_id JOIN roles "
-            + "ON users_roles.role_id = roles.role_id ";
+            + "USING (user_id) JOIN roles USING (role_id) ";
 
     @Override
     public Optional<User> getByLogin(String login) {
