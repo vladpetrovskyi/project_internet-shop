@@ -1,11 +1,12 @@
 package com.internetshop.service.impl;
 
+import com.internetshop.dao.OrderDao;
 import com.internetshop.dao.ShoppingCartDao;
 import com.internetshop.dao.UserDao;
 import com.internetshop.lib.Inject;
 import com.internetshop.lib.Service;
-import com.internetshop.model.ShoppingCart;
 import com.internetshop.model.User;
+import com.internetshop.service.ShoppingCartService;
 import com.internetshop.service.UserService;
 import com.internetshop.util.HashUtil;
 import java.util.List;
@@ -19,6 +20,12 @@ public class UserServiceImpl implements UserService {
 
     @Inject
     private ShoppingCartDao shoppingCartDao;
+
+    @Inject
+    private OrderDao orderDao;
+
+    @Inject
+    private ShoppingCartService shoppingCartService;
 
     @Override
     public User create(User user) {
@@ -50,13 +57,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean delete(Long id) {
-        shoppingCartDao.delete(
-                shoppingCartDao.getAll()
-                        .stream()
-                        .filter(c -> c.getUserId().equals(id))
-                        .map(ShoppingCart::getId)
-                        .findFirst()
-                        .orElseThrow());
+        shoppingCartDao.delete(shoppingCartService.getByUserId(id).getId());
+        orderDao.getUserOrders(id).forEach(o -> orderDao.delete(o.getId()));
         return userDao.delete(id);
     }
 }

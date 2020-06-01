@@ -47,9 +47,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public Optional<Order> get(Long id) {
-        String request = "SELECT * FROM orders JOIN orders_products op "
-                + "ON orders.order_id = op.order_id JOIN products p "
-                + "ON op.product_id = p.product_id WHERE orders.order_id = ?";
+        String request = "SELECT * FROM orders JOIN orders_products op USING (order_id) "
+                + "JOIN products p USING (product_id) WHERE orders.order_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(request)) {
             statement.setLong(1, id);
@@ -61,9 +60,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public List<Order> getAll() {
-        String request = "SELECT * FROM orders JOIN orders_products op "
-                + "ON orders.order_id = op.order_id JOIN products p "
-                + "ON op.product_id = p.product_id";
+        String request = "SELECT * FROM orders";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(request)) {
             return getOrders(statement.executeQuery());
@@ -114,6 +111,18 @@ public class OrderDaoJdbcImpl implements OrderDao {
         }
     }
 
+    @Override
+    public List<Order> getUserOrders(Long userId) {
+        String request = "SELECT * FROM orders WHERE user_id = ?";
+        try (Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(request)) {
+            statement.setLong(1, userId);
+            return getOrders(statement.executeQuery());
+        } catch (SQLException e) {
+            throw new DataProcessingException("Could not get orders of user with ID#" + userId, e);
+        }
+    }
+
     private List<Order> getOrders(ResultSet resultSet) throws SQLException {
         List<Order> orderList = new ArrayList<>();
         while (resultSet.next()) {
@@ -128,7 +137,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     private List<Product> getProductsFromOrder(Long id) throws SQLException {
         String request = "SELECT * FROM orders_products op JOIN products p "
-                + "ON p.product_id = op.product_id WHERE op.order_id = ?";
+                + "USING (product_id) WHERE op.order_id = ?";
         List<Product> productList = new ArrayList<>();
         ResultSet resultSet = null;
         try (Connection connection = ConnectionUtil.getConnection();

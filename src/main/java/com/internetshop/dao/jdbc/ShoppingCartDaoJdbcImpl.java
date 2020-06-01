@@ -44,7 +44,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
 
     @Override
     public Optional<ShoppingCart> get(Long id) {
-        String getShoppingCartRequest = "SELECT * FROM shopping_carts WHERE cart_id = ?";
+        String getShoppingCartRequest = "SELECT * FROM shopping_carts WHERE user_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection
                         .prepareStatement(getShoppingCartRequest)) {
